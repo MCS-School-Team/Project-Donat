@@ -5,7 +5,7 @@ import GameToGrow from "./images/GameToGrow.jpeg"
 import Modal from "./components/Modal"
 import list from "./components/country"
 
-console.log(list)
+
 
 export const compony = [
     {
