@@ -11,7 +11,7 @@ export const compony = [
       name: "MMM",
       category: "education-training",
       countri: "RU",
-      image: <img src={zaman} alt="o" />
+      image: <img src={zaman} alt="" />
 
     },
     {
