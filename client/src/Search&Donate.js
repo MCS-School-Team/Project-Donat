@@ -62,6 +62,12 @@ export const compony = [
         countri: "RU", 
         image: <img src={zaman} alt="" />
   
+      },
+      {
+        name: "mpet",
+        category: "community-service",
+        countri: "US",
+        image: <img src={GameToGrow} alt="" />
       }
     
   ];
