@@ -1,11 +1,7 @@
 
 import React from "react";
 import "../index.css"
-// let loader = (now,total) => {
-//    let resault = now/total*100
-//    resault.join("%")
-//    return console.log(resault)
-// }
+
 const Modal = ({active,setActive,items}) => {
     
     return (
