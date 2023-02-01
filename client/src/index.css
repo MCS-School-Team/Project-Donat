@@ -34,11 +34,3 @@ code {
   opacity: 1;
   pointer-events: all;
 }
-
-.modal__content {
-  padding: 20px;
-  border-radius: 12px;
-  background-color: white;
-  width: 50%;
- 
-}
