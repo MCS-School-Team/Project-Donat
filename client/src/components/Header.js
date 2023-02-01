@@ -1,6 +1,6 @@
 import {AppBar,Toolbar,Typography, Button, Box} from '@mui/material'; 
 
-const Header=() => {
+const Header=({handleSetHomeScreen}) => {
      
       return (     
         <Box m={3} pt={4}>               
@@ -13,7 +13,7 @@ const Header=() => {
                     Let's Donate
                   </Typography>
                  
-                      <Button key='home' sx={{ color: '#fff' }}>
+                      <Button onClick={() => handleSetHomeScreen()} key='home' sx={{ color: '#fff' }}>
                         Home
                       </Button>
                  
