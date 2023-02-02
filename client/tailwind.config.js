@@ -10,9 +10,11 @@ module.exports = {
     container: {
       center: true,
     },
-    colors: {
+   colors: {
     'light-brown':'rgba(250, 244, 238, 1)',
     'white': '#fafafa',
+    'white-r': '#ffffff',
+    'gray-300':'rgb(209 213 219)',
     'brown': 'rgba(88, 27, 27, 1)',
     'blue':'rgba(13, 7, 81, 1)',
     

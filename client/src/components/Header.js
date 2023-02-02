@@ -1,4 +1,5 @@
 import logo from "../images/Logo_for_Header.png";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
@@ -8,12 +9,11 @@ const Header = () => {
           <img className="ml-20" src={logo} alt="Logo" />
 
           <div className=" flex space-x-12 justify-end items-center mr-12 ">
-            <a
-              href="/"
+            <Link to="/"  
               className="bg-light-brown text-brown font-Chewy text-2xl font-black "
             >
               Home
-            </a>
+            </Link>
             <a
               href="#benefits"
               className="bg-light-brown text-brown font-Chewy text-2xl font-black "
