@@ -9,7 +9,7 @@ import { Grid } from "@mui/material";
 
 
 
-export default function CardHome({kind, text, buttonText, handleSetCreateCampaign}) {
+export default function CardHome({kind, text, buttonText, handleSetScreen}) {
   return (
     <Card sx={{ minWidth: 275 }}>
       <Grid container direction="column" alignItems="center">
@@ -21,7 +21,7 @@ export default function CardHome({kind, text, buttonText, handleSetCreateCampaig
         </Grid>
         <Grid item>
           <CardActions>
-            <Button size="small" onClick={() => handleSetCreateCampaign()}>{buttonText}</Button>
+            <Button size="small" onClick={() => handleSetScreen()}>{buttonText}</Button>
           </CardActions>
         </Grid>
       </Grid>
