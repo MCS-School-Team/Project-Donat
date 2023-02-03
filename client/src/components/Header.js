@@ -1,41 +1,40 @@
-import {AppBar,Toolbar,Typography, Button, Box} from '@mui/material'; 
+import logo from "../images/Logo_for_Header.png";
+import { Link } from "react-router-dom";
 
-const Header=({handleSetHomeScreen}) => {
-     
-      return (     
-        <Box m={3} pt={4}>               
-              <AppBar component="nav" >
-                <Toolbar>                
-                  <Typography
-                    variant="h5"
-                    sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
-                  >
-                    Let's Donate
-                  </Typography>
-                 
-                      <Button onClick={() => handleSetHomeScreen()} key='home' sx={{ color: '#fff' }}>
-                        Home
-                      </Button>
-                 
-                  
-                      <Button key='about us' sx={{ color: '#fff' }}>
-                      About us
-                      </Button>
-                
-                  
-                      <Button key='add your company' sx={{ color: '#fff' }}>
-                      Add your company
-                      </Button>
-                 
-                </Toolbar>
-              </AppBar>
-              </Box>               
-            
-          );
-        
-      }
-      
-        
-     
+const Header = () => {
+  return (
+    <>
+      <div className="bg-light-brown  ">
+        <div className="flex flex-row justify-between">
+          <img className="ml-20" src={logo} alt="Logo" />
 
-export default Header
+          <div className=" flex space-x-12 justify-end items-center mr-12 ">
+            <Link to="/"  
+              className="bg-light-brown text-brown font-Chewy text-2xl font-black "
+            >
+              Home
+            </Link>
+            <a
+              href="#benefits"
+              className="bg-light-brown text-brown font-Chewy text-2xl font-black "
+            >
+              Benefits
+            </a>
+            <a
+              href="#about"
+              className="bg-light-brown text-brown font-Chewy text-2xl font-black "
+            >
+              About
+            </a>
+
+            <button className="bg-blue text-light-brown font-Chewy text-2xl p-4 rounded-3xl">
+              Connect Wallet
+            </button>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default Header;

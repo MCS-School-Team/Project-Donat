@@ -44,9 +44,8 @@ export default function Search(){
     const [findCountry, setCountry] = useState("All");
     const [items, setItems] = useState(compony);
     const [modalActive, setModalActive] = useState(false)
-    const [forModal ,setForModal]=useState([])
+    const [forModal ,setForModal]=useState(items[0])
 
-   
     function getName(e) {
       setFind(e.target.value);
     }
@@ -74,13 +73,13 @@ export default function Search(){
    return (
     <>
     <Modal active={modalActive} setActive={setModalActive} items={forModal}  />
-    <div className="flex flex-col ">
+    <div className="flex font-Chewy flex-col ">
     <div className="flex  justify-center  p-16">
     <form className=" w-3/5 " onSubmit={handleSubmit}>
-        <input type="search" className="w-10/12 h-12 text-[20px] border border-solid border-gray-300 rounded-l-lg  indent-2 bg-gray-100" placeholder="Search by name..." value={findName} onChange={getName} />
-        <input type="submit"className="bg-yellow-400 h-12 text-[20px] border rounded-r-lg  w-2/12" value="Search" />
+        <input type="search" className="w-10/12 h-[46px] text-[20px] border border-solid border-gray-300 rounded-l-lg  indent-2  " placeholder="Search by name..." value={findName} onChange={getName} />
+        <input type="submit"className="bg-blue h-[48px] -ml-1 text-[20px] text-white border rounded-r-lg  w-2/12" value="Search" />
         <div className="w-full flex justify-center">
-        <select className="w-1/3 p-1 rounded-lg mr-2 border border-solid indent-2 border-gray-300 bg-white  mt-2 text-[20px]" onChange={getCategory}>
+        <select className="w-1/3 p-1 rounded-lg mr-2  border border-solid indent-2 border-gray-300 bg-white  mt-2 text-[20px]" onChange={getCategory}>
         <option value="All">Filter by category</option>
         <option value="addiction-recovery">Addiction Recovery</option>
         <option value="animals">Animals</option>
@@ -108,7 +107,7 @@ export default function Search(){
         <option value="water-hygiene">Water &amp; Hygiene</option>
         <option value="women-girls">Women &amp; Girls</option>
         </select>
-        <select className="w-1/3 border border-solid rounded-lg indent-2 border-gray-300 bg-white mt-2 text-[20px]" onChange={getCountry}>
+        <select className="w-1/3 border border-solid  bg-white-r rounded-lg indent-2 border-gray-300 mt-2 text-[20px]" onChange={getCountry}>
           <option value="All">Country</option>
           {list.map(item => item)}
         </select>
@@ -120,11 +119,11 @@ export default function Search(){
  <div className="  flex   w-full flex-wrap ">
           {items.map((item, index) => (
             <li key={index}>
-                <div className="flex bg-white items-center text-[25px] rounded-lg  p-9 ml-7 mt-3 mb-4 flex-col drop-shadow-xl">
+                <div className="flex bg-white-r items-center text-[25px] rounded-lg  p-9 ml-7 mt-3 mb-4 flex-col drop-shadow-xl">
                 {item.image}
                 {item.name}
                 
-                <button onClick={()=>modal(index)} className="text-[17px] w-10/12 rounded-lg h-10 bg-yellow-300">Learn more</button>
+                <button onClick={()=>modal(index)} className="text-[17px] w-10/12 rounded-lg h-10 mt-4 text-white bg-blue">Learn more</button>
                 </div>
                 </li>
           ))}

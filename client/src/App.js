@@ -1,46 +1,25 @@
-import Layout from "./components/Layout";
-import Header from "./components/Header";
+import Layout from "./components/Layout.js";
+import Header from "./components/Header.js";
+import About from "./components/About.js";
 import { useState } from "react";
+import Benefits from "./components/Benefits.js";
+import Search from "./components/Search&Donate";
+import {Routes,Route,Link} from 'react-router-dom'
+import CreateCampaign from "./components/CreateCampaign.js";
 
 const App = () => {
-  const [screen, setScreen] = useState({
-    isCreateCampaign: false,
-    isDonateCrypto: false,
-    isHome: true,
-  });
-
-  const handleSetCreateCampaignScreen = () => {
-    setScreen({
-      isCreateCampaign: true,
-      isDonateCrypto: false,
-      isHome: false,
-    });
-  };
-
-  const handleSetHomeScreen = () => {
-    setScreen({
-      isCreateCampaign: false,
-      isDonateCrypto: false,
-      isHome: true,
-    });
-  };
-
-  const handleSetDonateCryptoScreen = () => {
-    setScreen({
-      isCreateCampaign: false,
-      isDonateCrypto: true,
-      isHome: false,
-    })
-  }
+  
 
   return (
     <>
-      <Header handleSetHomeScreen = {handleSetHomeScreen}/>
-      <Layout
-        handleSetCreateCampaign={handleSetCreateCampaignScreen}
-        handleSetDonateCryptoScreen={handleSetDonateCryptoScreen}
-        screen={screen}
-      ></Layout>
+      <Header/>
+      <Routes>
+        <Route path="/" element={<Layout />} />
+        <Route path="/Search" element={<Search />} />
+        <Route path="/Create" element={<CreateCampaign />} />
+      </Routes>
+      <Benefits></Benefits>
+      <About></About>
     </>
   );
 };
