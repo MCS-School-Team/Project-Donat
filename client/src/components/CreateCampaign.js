@@ -68,7 +68,7 @@ const CreateCampaign = () => {
                             campaign</label><br/>
                         <select
                             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            name="country-campaign" type="text">
+                            name="country-campaign">
                             <option value="All">Country</option>
                             {list.map(item => item)}
                         </select>
@@ -78,7 +78,7 @@ const CreateCampaign = () => {
                             campaign</label><br/>
                         <select
                             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            name="category-campaign" type="text">
+                            name="category-campaign">
                             <option value="All">Filter by category</option>
                             <option value="addiction-recovery">Addiction Recovery</option>
                             <option value="animals">Animals</option>
@@ -107,7 +107,31 @@ const CreateCampaign = () => {
                             <option value="women-girls">Women &amp; Girls</option>
                         </select>
                     </div>
+                    <div>
+                        <label className="mb-2 text-sm font-medium text-gray-900 dark:text-whith"
+                               htmlFor="logo-link">Logo link</label><br/>
+                        <input
+                            className="phone-number bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            name="logo-link" type="url"/>
+                    </div>
+                    <div>
+                        <label className="mb-2 text-sm font-medium text-gray-900 dark:text-whith"
+                               htmlFor="youtube-link">Youtube</label><br/>
+                        <input
+                            className="phone-number bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            name="youtube-link" type="url"/>
+                    </div>
+                    <div>
+                        <label className="mb-2 text-sm font-medium text-gray-900 dark:text-whith"
+                               htmlFor="youtube-link">Website</label><br/>
+                        <input
+                            className="phone-number bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            name="website-link" type="url"/>
+                    </div>
                 </form>
+            </section>
+            <section className="m-10 grid justify-items-center">
+                <button className="text-[17px] w-2/5 rounded-lg h-10 text-white bg-blue">Send</button>
             </section>
         </article>
     );
