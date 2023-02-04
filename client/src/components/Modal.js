@@ -39,7 +39,7 @@ const Modal = ({active,setActive,items}) => {
                             <h1 className="font-bold text-[25px] ">Our Mission</h1>
                             <h2 className="text-left text-[19px] mb-10 ">{items.desc.Mission} </h2> 
                        </div>
-                       <h1 className="font-bold text-[25px]">Why Donate to{items.name}</h1>
+                       <h1 className="font-bold text-[25px]">Why Donate to {items.name}</h1>
                        <h2 className="text-left text-[19px] ">{items.desc.WhyDonate}</h2>
                        <h3 className="font-bold text-[18px] mt-3">Wibsite: <a className="font-thin" href={`${items.website}`} >{items.website}</a></h3>
                     </div>  
