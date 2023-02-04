@@ -32,6 +32,7 @@ const Modal = ({active,setActive,items}) => {
                            <div className="flex w-full border border-black">
                            <div  className={`bg-red w-[${p}%] h-3`}></div>
                            </div>
+                            <div className="flex justify-center items-end w-full h-full"><button className="rounded-lg bg-blue h-10 mb-5 text-white p-2 ">Donate Now</button></div>
                         </div>
                     </div>
                     <div>
