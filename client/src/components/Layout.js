@@ -1,26 +1,44 @@
-import { Container, Grid } from "@mui/material";
-import React, { useState } from "react";
-import CardHome from "./CardHome";
-import CreateCompany from "./CreateCampaign";
+import React from "react";
 import { Link } from "react-router-dom";
+import Carousel from "./Carousel";
+import Benefits from "./Benefits";
+import About from "./About"
 
 const Layout = () => {
-
   return (
-    <div>
-      <div className="flex justify-center ">
-        <div className="flex flex-col rounded-xl mr-10 border border-solid border-blue p-24 ">
-          <h1>Create company</h1>
-          <p>Something text</p>
-          <Link to="/Create" className="bg-blue text-white rounded-lg text-center">Create</Link>
+    <>
+    <div className="bg-light-brown">
+      <div className="flex justify-center  ">
+        <div className="flex-none w-1/3 flex-col rounded-xl  bg-md-brown text-brown font-Chewy text-2xl  font-black text-center p-10 m-1 ">
+          <div className="mb-12">
+            <p className="mb-4">Create campaign</p>
+            <p className="font-normal">
+              Realise your project and make life brighter
+            </p>
+          </div>
+          <buttom className=" bg-light-brown-2 text-brown rounded-lg text-center border-2 border-solid border-brown p-4 ">
+            <Link to="/Create">Create campaign</Link>
+          </buttom>
         </div>
-        <div className="flex flex-col rounded-xl mr-10 border border-solid border-blue p-24 ">
-          <h1>Donate company</h1>
-          <p>Something text</p>
-          <Link to="/Search" className="bg-blue text-white rounded-lg text-center">Donate</Link> 
-        </div>
+
+        <div className="flex-none w-1/3 flex-col rounded-xl bg-blue text-white font-Chewy text-2xl font-black text-center p-10 m-1">
+          <div className="mb-12">
+            <p className="mb-4">Donate crypto</p>
+            <p className="font-normal">
+              Donate Ethereum to nonprofits campaign and receive benefits
+            </p>
+          </div>
+
+          <buttom className=" bg-blue text-white rounded-lg text-center border-2 border-solid border-white p-4">
+            <Link to="/Search">Donate Now</Link>
+          </buttom>
+                </div>
       </div>
     </div>
+      <Carousel></Carousel>
+      <Benefits></Benefits>
+      <About></About>
+      </>
   );
 };
 export default Layout;
