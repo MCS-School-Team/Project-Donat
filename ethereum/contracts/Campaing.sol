@@ -4,17 +4,18 @@ pragma solidity ^0.8.17;
 contract CampaingFactory {
     mapping(address => address) public ownerToCampaing;
 
-    function createGather(
+    function createCampaing(
         string memory _name,
         string memory _description,
         uint256 _goal
-    ) public {
+    ) public returns (address) {
         require(
             ownerToCampaing[msg.sender] == address(0),
             "This adress already have Campaing!"
         );
         Campaing campaing = new Campaing(_name, _description, _goal);
         ownerToCampaing[msg.sender] = address(campaing);
+        return address(campaing);
     }
 }
 
