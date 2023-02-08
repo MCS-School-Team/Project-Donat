@@ -1,7 +1,29 @@
 import logo from "../images/Logo_for_Header.png";
 import { Link } from "react-router-dom";
+import Button from "./Button";
+import { BrowserProvider, parseUnits } from "ethers";
+import provider from "../provider";
+
+
+
 
 const Header = () => {
+  
+  const onClickConnect = () => {
+    let signer = null;
+
+    let provider;
+    if (window.ethereum == null) {
+            console.log("MetaMask not installed; using read-only defaults")
+        provider = ethers.getDefaultProvider()
+    
+    } else {
+    
+        provider = new ethers.BrowserProvider(window.ethereum)
+            signer = provider.getSigner();
+    }
+
+  }
   return (
     <>
       <div className="bg-light-brown  ">
@@ -27,9 +49,12 @@ const Header = () => {
               About
             </a>
 
-            <button className="bg-blue text-light-brown font-Chewy text-2xl p-4 rounded-3xl">
-              Connect Wallet
-            </button>
+            <Button 
+            text="Connect Wallet"
+            type ="button"
+            buttonStyle="connect"
+            onClick ={onClickConnect}              
+            />
           </div>
         </div>
       </div>
