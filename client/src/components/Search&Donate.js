@@ -3,6 +3,8 @@ import { useState,useEffect } from "react";
 import Modal from "./Modal"
 import list from "../data/list"
 import { compony } from "../data/ArrayCompony";
+import { ethers,Contract,parseEther,formatEther } from "ethers";
+import abi from "../abi.json"
 
 
 const filterName = (findname, findCategory, findcountry, items) => {
@@ -45,6 +47,26 @@ export default function Search(){
     const [items, setItems] = useState(compony);
     const [modalActive, setModalActive] = useState(false)
     const [forModal ,setForModal]=useState(items[0])
+    const [name,setName] = useState()
+    const [signer ,setSigner] = useState()
+    const [addrr,setAddrr] = useState()
+    // Провайдер с подключением контракта..............................................
+    let contract;
+    const provider = new ethers.BrowserProvider(window.ethereum); 
+    contract = new Contract("0x59f496E5580B7dF7de7BFAAF629eBf88B9CD0a15", abi, provider)
+    //..................................................................................
+
+
+    let address = ["0x59f496E5580B7dF7de7BFAAF629eBf88B9CD0a15"] // Массив с адресами контрактов 
+
+
+    //Получение имени..................................................................
+    useEffect(() => {
+      (async () => {
+         setName( await contract.name())
+      })()
+    },[])
+    //.................................................................................
 
     function getName(e) {
       setFind(e.target.value);
@@ -60,6 +82,7 @@ export default function Search(){
       const filteredName = filterName(findName, findCategory, findCountry, compony);
       setItems(filteredName);
     }, [fin]);
+
     function handleSubmit(e) {
       setFin(!fin);
       e.preventDefault();
@@ -67,12 +90,14 @@ export default function Search(){
     function modal(index){
         setModalActive(true)
         setForModal(items[index])
+        setAddrr(address[index])// Тут получаем индекс из кнопки и передаём переменной addrr элемент массива address 
     }
     console.log(forModal)
    
    return (
     <>
-    <Modal active={modalActive} setActive={setModalActive} items={forModal}  />
+    {/* Тут в Modal мы передаёи пропсы ,соответственно address={addrr} это передача адреса */}
+    <Modal active={modalActive} setActive={setModalActive} items={forModal} address={addrr} /> 
     <div className="flex font-Chewy flex-col ">
     <div className="flex  justify-center  p-16">
     <form className=" w-3/5 " onSubmit={handleSubmit}>
@@ -121,9 +146,8 @@ export default function Search(){
             <li key={index}>
                 <div className="flex bg-white-r items-center text-[25px] rounded-lg  p-9 ml-7 mt-3 mb-4 flex-col drop-shadow-xl">
                 {item.image}
-                {item.name}
-                
-                <button onClick={()=>modal(index)} className="text-[17px] w-10/12 rounded-lg h-10 mt-4 text-white bg-blue">Learn more</button>
+                {name} 
+                <button onClick={()=>modal(0)} className="text-[17px] w-10/12 rounded-lg h-10 mt-4 text-white bg-blue">Learn more</button>
                 </div>
                 </li>
           ))}
@@ -132,7 +156,6 @@ export default function Search(){
     
       </div>
       </div>
-      
     </>
     )
 }
