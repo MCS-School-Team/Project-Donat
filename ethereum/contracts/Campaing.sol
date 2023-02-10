@@ -3,6 +3,9 @@ pragma solidity ^0.8.17;
 
 contract CampaingFactory {
     mapping(address => address) public ownerToCampaing;
+    //Need this to get campaings list!
+    address[] public campaings;
+    uint256 public campaingsCount;
 
     function createCampaing(
         string memory _name,
@@ -13,8 +16,10 @@ contract CampaingFactory {
             ownerToCampaing[msg.sender] == address(0),
             "This adress already have Campaing!"
         );
+        campaingsCount += 1;
         Campaing campaing = new Campaing(_name, _description, _goal);
         ownerToCampaing[msg.sender] = address(campaing);
+        campaings.push(address(campaing));
         return address(campaing);
     }
 }
