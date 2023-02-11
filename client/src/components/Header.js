@@ -16,12 +16,18 @@ const Header = () => {
         const accounts = await window.ethereum.request({
           method: "eth_requestAccounts",
         });
+
         if (accounts) {
           alert("Successfully log in MetaMask");
         }
       } catch (error) {
         if (error.code === 4001) {
           alert("You didn't enter MetaMask account. Please, repeat the excess");
+        }
+        if (error.code === -32002) {
+          alert(
+            "You didn't enter MetaMask account. Please, enter the password"
+          );
         } else {
           alert(error.message);
         }
