@@ -1,4 +1,4 @@
-# Donkey-Hot
+# ***Donkey-Hot*** :hot_pepper:
 ## How to install locally:
 #### git clone
 #### npm install -i
