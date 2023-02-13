@@ -12,7 +12,7 @@ const CreateCampaign = () => {
     }
     return (
         <article className="container w-6/12 mx-auto">
-            <section className="about-you m-10 border-2 mt-5 border border-gray-300 rounded-lg p-7">
+            <section className="about-you m-10 border-2 mt-5 border-gray-300 rounded-lg p-7">
                 <p className="pb-5 text-brown font-Chewy text-2xl font-black">About you</p>
                 <form className="form-about-you flex-col">
                     <div className="grid grid-cols-2 gap-x-5 pb-5">
@@ -59,7 +59,7 @@ const CreateCampaign = () => {
                     </div>
                 </form>
             </section>
-            <section className="m-10 border-2 mt-5 border border-gray-300 rounded-lg p-7">
+            <section className="m-10 border-2 mt-5  border-gray-300 rounded-lg p-7">
                 <p className="pb-5 text-brown font-Chewy text-2xl font-black">About your campaign</p>
                 <form className="grid grid-cols-1 gap-y-5">
                     <div className="">

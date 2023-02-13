@@ -1,42 +1,56 @@
 import logo from "../images/Logo_for_Header.png";
 import { Link } from "react-router-dom";
+import { useState} from "react";
 import Button from "./Button";
 import { ethers } from "ethers";
 
 const Header = () => {
-  async function onClickConnect() {
-    let signer = null;
-    let provider;
-    if (window.ethereum == null) {
-      console.log("MetaMask not installed; using read-only defaults");
-      provider = ethers.getDefaultProvider();
-    }
-    if (window.ethereum) {
-      try {
-        const accounts = await window.ethereum.request({
-          method: "eth_requestAccounts",
-        });
+  const [currentAccount, setCurrentAccount] = useState();
 
-        if (accounts) {
-          alert("Successfully log in MetaMask");
-        }
-      } catch (error) {
-        if (error.code === 4001) {
-          alert("You didn't enter MetaMask account. Please, repeat the excess");
-        }
-        if (error.code === -32002) {
-          alert(
-            "You didn't enter MetaMask account. Please, enter the password"
-          );
-        } else {
-          alert(error.message);
-        }
+  const onClickConnect =async()=>{
+  
+    
+      let signer = null;
+      let provider;
+
+      if (window.ethereum == null) {
+        console.log("MetaMask not installed; using read-only defaults");
+        provider = ethers.getDefaultProvider();
       }
-    } else {
-      provider = new ethers.BrowserProvider(window.ethereum);
-      signer = await provider.getSigner();
+
+      if (window.ethereum) {
+        try {
+          const accounts = await window.ethereum
+            .request({
+              method: "eth_requestAccounts",
+            })
+            .then((res) => {
+              setCurrentAccount(res);
+            });
+          if (currentAccount) {
+            alert("Successfully log in MetaMask");
+          }
+        } catch (error) {
+          if (error.code === 4001) {
+            alert(
+              "You didn't enter MetaMask account. Please, repeat the excess"
+            );
+          }
+          if (error.code === -32002) {
+            alert(
+              "You didn't enter MetaMask account. Please, enter the password"
+            );
+          } else {
+            alert(error.message);
+          }
+        }
+      } else {
+        provider = new ethers.BrowserProvider(window.ethereum);
+        signer = await provider.getSigner();
+      }
     }
-  }
+ 
+  
 
   return (
     <>
@@ -63,13 +77,15 @@ const Header = () => {
             >
               About
             </a>
-
-            <Button
-              text="Connect Wallet"
-              type="button"
-              buttonStyle="connect"
-              onClick={onClickConnect}
-            />
+            <div>
+              <Button
+                text={!currentAccount ? "Connect Wallet" : `${currentAccount}`}
+                type="button"
+                buttonStyle={!currentAccount ? "connect" : "desabled"}
+                onClick={onClickConnect}
+                disabled={currentAccount}
+              />
+            </div>
           </div>
         </div>
       </div>

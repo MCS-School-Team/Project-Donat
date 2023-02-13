@@ -42,7 +42,9 @@ const Layout = () => {
           </div>
         </div>
       </div>
-      <Carousel></Carousel>
+      <div className="bg-light-brown 2xl:container 2xl:mx-auto 2xl:px-0 py-3 px-10">
+      <Carousel/>
+      </div>
       <Benefits></Benefits>
       <About></About>
     </>

@@ -18,7 +18,7 @@ module.exports = {
     'white': '#fafafa',
     'white-r': '#ffffff',
     'gray-300':'rgb(209 213 219)',
-    'light-blue': 'rgba(37, 101, 160, 0.56)',
+    'light-blue': 'rgba(16, 54, 111, 1)',
     'blue':'rgba(13, 7, 81, 1)',
     'red': '#ff0000'
     
