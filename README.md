@@ -1,4 +1,4 @@
-<h1 align="center">Donkey-Hot</h1>:horse:
+# ***Donkey-Hot***:horse:
 ## How to install locally:
 #### git clone
 #### npm install -i
