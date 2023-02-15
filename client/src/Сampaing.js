@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ethers } from 'ethers';
+import {Contract,ethers} from 'ethers';
 import abi from "./abi.json"
 const Campaing = () => {
     const [name, setName] = useState('');
@@ -9,13 +9,13 @@ const Campaing = () => {
     const [description, setDescription] = useState('');
     const [time, setTime] = useState('');
     const [donaters, setDonaters] = useState('');
-    const provider = new ethers.providers.Web3Provider(window.ethereum)
+    const provider = new ethers.BrowserProvider(window.ethereum);
     provider.send("eth_requestAccounts", []);
     const signer = provider.getSigner();
-    const contract = new ethers.Contract(
+    const contract = new Contract(
         '0x59f496E5580B7dF7de7BFAAF629eBf88B9CD0a15',
         abi,
-        signer
+        provider
     );
 
     const getName = async () => {

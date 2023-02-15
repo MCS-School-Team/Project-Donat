@@ -20,6 +20,19 @@
 	},
 	{
 		"inputs": [],
+		"name": "campaingsArray",
+		"outputs": [
+			{
+				"internalType": "address[]",
+				"name": "",
+				"type": "address[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
 		"name": "campaingsCount",
 		"outputs": [
 			{
