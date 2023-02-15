@@ -8,16 +8,16 @@ contract CampaingFactory{
     uint public campaingsCount;
 
     function createCampaing(string memory  _name,string memory  _description, uint _goal) public returns (address){
-        require(
-            ownerToCampaing[msg.sender] == address(0),
-            "This adress already have Campaing!"
-        );
         campaingsCount+=1;
         Campaing campaing = new Campaing(_name, _description,_goal);
         ownerToCampaing[msg.sender] = address(campaing);
         campaings.push(address(campaing));
         return address(campaing);
     }
+     function campaingsArray() public view returns (address[] memory) {
+        return campaings;
+    }
+
 }
 
 contract Campaing{
