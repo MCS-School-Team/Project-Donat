@@ -54,7 +54,7 @@ const Header = () => {
 
   return (
     <>
-      <div className="bg-light-brown ">
+      <div className="bg-light-brown  ">
         <div className="flex flex-row justify-between">
           <img className="ml-20" src={logo} alt="Logo" />
 
@@ -64,8 +64,8 @@ const Header = () => {
               className="bg-light-brown text-brown font-Chewy text-2xl font-black "
             >
               Home
-            </Link >
-            <a 
+            </Link>
+            <a
               href="#benefits"
               className="bg-light-brown text-brown font-Chewy text-2xl font-black "
             >
