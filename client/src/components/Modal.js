@@ -3,14 +3,7 @@ import abi from "../abi.json"
 import React from "react";
 import { useState,useEffect } from 'react';
 import "../index.css"
-let loader = (now,total) => {
-let n = Number.parseInt(now, 10)
-let t =  Number.parseInt(total, 10)
 
-let e = n/t*100 
-
-return e 
-}
 
 const Modal = ({active,setActive,items,address}) => {
     const [name ,setName] = useState ()
@@ -22,7 +15,6 @@ const Modal = ({active,setActive,items,address}) => {
     const provider = new ethers.BrowserProvider(window.ethereum);
     const  contract = new Contract(`${address}`, abi, provider)
     //...................................................
-  let p =  loader(items.nowTotals,items.total)
   // Для того чтобы задать переменные взятые из контракта 
   useEffect(() => {
     (async () => {
@@ -59,27 +51,22 @@ const Modal = ({active,setActive,items,address}) => {
                     <div className="flex  p-2 mb-5">
                         
                         <div className="-ml-3 ">{items.video ? <iframe width="600px" height={350} src={`https://www.youtube.com/embed/${items.video}`} title={items.name}></iframe>  : items.image }</div>
-                        <div className="flex flex-col w-full ml-3 items-center border border-solid border-red-600">
+                        <div className="flex flex-col w-full ml-3 rounded-xl items-center border border-solid border-red-600">
                            <h1 className="font-bold text-[25px] mb-7" >Progress</h1>
                            <div className="flex">
-                           <h2 className="font-bold text-[19px] mr-10 " >Need: {goal}</h2> 
-                            <h2 className="font-bold text-[19px] ">Now:{now}</h2>
-                           
+                           <h2 className="font-bold text-[19px] mr-10 " >Goal: {goal}</h2> 
+                            <h2 className="font-bold text-[19px] ">Now: {now}</h2>
                            </div>
-                           <h3>Stil need {loader(items.nowTotals,items.total)}%</h3>
-                           <div className="flex w-full border border-black">
-                           <div  className={`bg-red w-[${p}%] h-3`}></div> 
-                           </div>
-                            <form onSubmit={transaction}>
-                            <input className='border' type="number" step=".01" value={values}  onChange={getValues} />
+                            <form className='flex mt-10' onSubmit={transaction}>
+                            <input className='border h-10 rounded-lg ' type="number" step=".01" value={values}  onChange={getValues} />
                             <div className="flex justify-center items-end w-full h-full"><input type='submit' value='Donate now' className="rounded-lg bg-blue h-10 mb-5 text-white p-2 "  /></div>
                            </form>
                            
                         </div>
                     </div>
                     <div>
-                        <div>
-                            <h1 className="font-bold text-[25px] ">Our Mission</h1>
+                        <div className='h-[150px] overflow-y-auto'>
+                            <h1 className="font-bold  text-[25px] ">Our Mission</h1>
                             <h2 className="text-left text-[19px] mb-10 ">{items.desc.Mission} </h2> 
                        </div>
                        <h1 className="font-bold text-[25px]">Why Donate to{name}</h1>

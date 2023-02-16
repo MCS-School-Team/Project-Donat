@@ -1,0 +1,28 @@
+const list2 = [
+    <option value="addiction-recovery">Addiction Recovery</option>,
+        <option value="animals">Animals</option>,
+        <option value="arts-culture">Arts &amp; Culture</option>,
+        <option value="children-youth">Children &amp; Youth</option>,
+        <option value="community-foundations">Community Foundations</option>,
+        <option value="community-service">Community Service</option>,
+        <option value="developmental-disabilities">Developmental Disabilities</option>,
+        <option value="disaster-response">Disaster Response</option>,
+        <option value="education-training">Education &amp; Training</option>,
+        <option value="environment">Environment</option>,
+        <option value="first-responders-veterans">First Responders &amp; Veterans</option>,
+        <option value="health-medicine">Health &amp; Medicine</option>,
+        <option value="higher-education">Higher Education</option>,
+        <option value="homelessness">Homelessness</option>,
+        <option value="human-rights">Human Rights</option>,
+        <option value="hunger">Hunger</option>,
+        <option value="immigration-refugees">Immigration &amp; Refugees</option>,
+        <option value="international-development">International Development</option>,
+        <option value="legal-support">Legal Support</option>,
+        <option value="lgbtq">LGBTQ</option>,
+        <option value="racial-justice">Racial Justice</option>,
+        <option value="religion-and-faith-based">Religion and Faith Based</option>,
+        <option value="technology">Technology</option>,
+        <option value="water-hygiene">Water &amp; Hygiene</option>,
+        <option value="women-girls">Women &amp; Girls</option>
+]
+export default list2;
