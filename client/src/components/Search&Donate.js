@@ -6,7 +6,7 @@ import list2 from "../data/list2"
 import { compony } from "../data/ArrayCompony";
 import { ethers,Contract,parseEther,formatEther } from "ethers";
 import abi from "../abi.json"
-import abiF from "../abiF.json"
+import campaingFactory from "../data/campaingFactory";
 import filterName from "./serachFunc";
 
 
@@ -27,7 +27,7 @@ export default function Search(){
     let contractFctory;
     const provider = new ethers.BrowserProvider(window.ethereum); 
     contract = new Contract("0x59f496E5580B7dF7de7BFAAF629eBf88B9CD0a15", abi, provider)
-    contractFctory = new Contract("0x9992FeC96FAc7C4ECE68302C981F831C65De3DcA",abiF,provider )
+    contractFctory = campaingFactory
     //..................................................................................
 
 
