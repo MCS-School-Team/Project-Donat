@@ -2,8 +2,8 @@ import React from "react";
 import list from "../data/list";
 import { useState } from "react";
 import idvideo from "../images/idvideo.png";
-import {Contract, ethers, parseEther} from "ethers";
-import abi from "../abiF.json";
+import {ethers, parseEther} from "ethers";
+import campaingFactory from "../data/campaingFactory";
 
 const CreateCampaign = () => {
     const [mouseClick,setMouseClick] = useState(false)
@@ -32,7 +32,7 @@ const CreateCampaign = () => {
     const createCampaignTransaction = async (e) => {
         e.preventDefault()
         const signer = await provider.getSigner()
-        const signedContract = new Contract('0x9992FeC96FAc7C4ECE68302C981F831C65De3DcA', abi, signer)
+        const signedContract = campaingFactory.connect(signer)
         try {
             await signedContract.createCampaing(name, desc, parseEther(goal))
         } catch (err) {
