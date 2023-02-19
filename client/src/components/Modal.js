@@ -35,7 +35,7 @@ const Modal = ({active,setActive,items,address}) => {
   const transaction = async(e) =>{
     e.preventDefault()
     const  signer = await provider.getSigner()
-    const signedContract = new Contract(`${address}`, abi, signer)
+    const signedContract = new Contract(address, abi, signer)
     try {
         await signedContract.donate({ value: parseEther(values) })
     } catch (err) {
@@ -45,8 +45,7 @@ const Modal = ({active,setActive,items,address}) => {
   
     return (
     <div className={active ? "modal active":"modal"}  onClick={()=> setActive(false)} >
-        <div className="p-5 rounded-xl bg-white w-[1000px]" onClick={e => e.stopPropagation()}>
-               
+        <div className="p-5 rounded-xl bg-white w-[1000px]" onClick={e => e.stopPropagation()}>  
                 <div>
                     <div className="flex  p-2 mb-5">
                         
@@ -58,8 +57,8 @@ const Modal = ({active,setActive,items,address}) => {
                             <h2 className="font-bold text-[19px] ">Now: {now}</h2>
                            </div>
                             <form className='flex mt-10' onSubmit={transaction}>
-                            <input className='border h-10 rounded-lg ' type="number" step=".01" value={values}  onChange={getValues} />
-                            <div className="flex justify-center items-end w-full h-full"><input type='submit' value='Donate now' className="rounded-lg bg-blue h-10 mb-5 text-white p-2 "  /></div>
+                            <input className='border h-10 rounded-l-lg ' type="number" step=".01" value={values}  onChange={getValues} />
+                            <div className="flex justify-center items-end w-full h-full"><input type='submit' value='Donate now' className="rounded-r-lg bg-blue h-10 mb-5 text-white p-2 "  /></div>
                            </form>
                            
                         </div>
@@ -69,7 +68,7 @@ const Modal = ({active,setActive,items,address}) => {
                             <h1 className="font-bold  text-[25px] ">Our Mission</h1>
                             <h2 className="text-left text-[19px] mb-10 ">{items.desc.Mission} </h2> 
                        </div>
-                       <h1 className="font-bold text-[25px]">Why Donate to{name}</h1>
+                       <h1 className="font-bold text-[25px]">Why Donate to  {name}</h1>
                        <h2 className="text-left text-[19px] ">{desc}</h2>
                        <h3 className="font-bold text-[18px] mt-3">Wibsite: <a className="font-thin" href={`${items.website}`} >{items.website}</a></h3>
                     </div>  
