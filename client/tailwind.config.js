@@ -23,7 +23,7 @@ module.exports = {
     'blue':'rgba(13, 7, 81, 1)',
     'red': '#ff0000',
     'slate-900':"rgb(15 23 42)",
-     'yellow':'rgba(217,119,6)'
+     'yellow':'rgba(217,119,6)',
      'slate-400': "rgb(148 163 184)",
      'slate-500': "rgb(100 116 139)",
       'slate-600': "rgb(71 85 105)",   
