@@ -19,19 +19,22 @@ contract CampaingFactory {
 }
 
 contract Campaing {
-    enum State {
-        Pending,
-        Active,
-        Blocked
-    }
+  
+  
 
-    State public state = State.Active;
     string public name;
     address public owner;
     uint256 public goal;
     uint256 public treasure;
     string public description;
     uint256 public time;
+      enum State {
+        Pending,
+        Active,
+        Blocked
+    }
+    
+    State public getState;
     mapping(address => uint256) donaters;
 
     constructor(
@@ -44,6 +47,7 @@ contract Campaing {
         description = _description;
         goal = _goal * 10**18;
         time = block.timestamp + 20 minutes;
+        getState = State.Active;
     }
 
     modifier time_out() {

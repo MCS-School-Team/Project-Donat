@@ -8,9 +8,9 @@ contract CampaingFactory is ERC20 {
     //Need this to get campaings list!
     address[] public campaings;
     uint public campaingsCount;
-    function createCampaing(string memory  _name,string memory  _description, uint _goal) public returns (address){
+    function createCampaing(string memory  _name,string memory  _description, uint _goal, string memory _video, string memory _site) public returns (address){
         campaingsCount+=1;
-        Campaing campaing = new Campaing(_name, _description,_goal);
+        Campaing campaing = new Campaing(_name, _description,_goal,_video,_site);
         campaingToOwner[address(campaing)] = msg.sender;
         campaings.push(address(campaing));
         return address(campaing);
@@ -26,31 +26,37 @@ contract CampaingFactory is ERC20 {
 }
 
 contract Campaing{
-    enum State{
+ 
+    enum State {
         Pending,
         Active,
         Blocked
     }
 
-    State public state = State.Active;
+    State public getState;
     address headContract;
     string public name;
     address public owner;
     uint public goal;
     uint public treasure;
     string public description;
+    string public site;
+    string public video;
     uint public time;
     mapping(address => uint256) donaters;
-    
+   
 
-    constructor(string memory  _name,string memory  _description, uint _goal){
+    constructor(string memory  _name,string memory  _description, uint _goal, string memory _video, string memory _site){
         owner = tx.origin;
         name = _name;
         headContract = msg.sender;
         description = _description;
         goal = _goal* 10**18;
         time = block.timestamp + 5 minutes;
-    }
+        getState = State.Active;
+        video=_video;
+        site = _site;
+        }
 
     modifier time_out() {
         require(block.timestamp > time,"Campaing is not finished(time)");

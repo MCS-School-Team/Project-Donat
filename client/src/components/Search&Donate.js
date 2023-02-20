@@ -8,7 +8,7 @@ import { ethers,Contract,parseEther,formatEther } from "ethers";
 import abi from "../abi.json"
 import campaingFactory from "../data/campaingFactory";
 import filterName from "./serachFunc";
-import photoCamp from "../images/comp.png"
+import photoCamp from "../images/mount.png"
 
 
 const lol = async() => {

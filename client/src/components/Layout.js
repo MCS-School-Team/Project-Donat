@@ -5,7 +5,7 @@ import Benefits from "./Benefits";
 import About from "./About";
 import mount from "../images/mount.png"
 import "../index.css"
-import ReactFullpage from '@fullpage/react-fullpage';
+
 import box from "../images/box.png"
 
 const Layout = () => {

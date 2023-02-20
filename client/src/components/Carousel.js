@@ -24,6 +24,10 @@ const Carousel = () => {
         for (let i = 0; i < comp.length; i++) {
           let por = {
             name: await comp[i].name(),
+            description: await comp[i].description(),
+            goal:await comp[i].goal(),
+            video:await comp[i].video(),
+            site:await comp[i].site(),
           };
           proper.push(por);
         }
@@ -51,7 +55,11 @@ const Carousel = () => {
           <SplideSlide>
             <div className="border-2 border-brown rounded-xl p-10">
               <div className="font-Chewy text-2xl text-brown font-black text-center">
-                {item.name}
+                <div>{item.name}</div>
+                <div>{item.description}</div>
+                <div>{item.goal}</div>
+                <div>{item.video}</div>
+                <div>{item.site}</div>
               </div>
             </div>
           </SplideSlide>
