@@ -1,5 +1,26 @@
 [
 	{
+		"inputs": [],
+		"name": "donate",
+		"outputs": [],
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getPayment",
+		"outputs": [],
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "money_back",
+		"outputs": [],
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
 		"inputs": [
 			{
 				"internalType": "string",
@@ -15,10 +36,27 @@
 				"internalType": "uint256",
 				"name": "_goal",
 				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "_video",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_site",
+				"type": "string"
 			}
 		],
 		"stateMutability": "nonpayable",
 		"type": "constructor"
+	},
+	{
+		"inputs": [],
+		"name": "withdraw",
+		"outputs": [],
+		"stateMutability": "payable",
+		"type": "function"
 	},
 	{
 		"inputs": [],
@@ -48,9 +86,15 @@
 	},
 	{
 		"inputs": [],
-		"name": "donate",
-		"outputs": [],
-		"stateMutability": "payable",
+		"name": "getState",
+		"outputs": [
+			{
+				"internalType": "enum Campaing.State",
+				"name": "",
+				"type": "uint8"
+			}
+		],
+		"stateMutability": "view",
 		"type": "function"
 	},
 	{
@@ -64,13 +108,6 @@
 			}
 		],
 		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "money_back",
-		"outputs": [],
-		"stateMutability": "payable",
 		"type": "function"
 	},
 	{
@@ -101,12 +138,12 @@
 	},
 	{
 		"inputs": [],
-		"name": "state",
+		"name": "site",
 		"outputs": [
 			{
-				"internalType": "enum Campaing.State",
+				"internalType": "string",
 				"name": "",
-				"type": "uint8"
+				"type": "string"
 			}
 		],
 		"stateMutability": "view",
@@ -140,9 +177,15 @@
 	},
 	{
 		"inputs": [],
-		"name": "withdraw",
-		"outputs": [],
-		"stateMutability": "payable",
+		"name": "video",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
 		"type": "function"
 	}
 ]
