@@ -8,7 +8,7 @@ import { ethers,Contract,parseEther,formatEther } from "ethers";
 import abi from "../abi.json"
 import campaingFactory from "../data/campaingFactory";
 import filterName from "./serachFunc";
-import photoCamp from "../images/mount.png"
+import photoCamp from "../images/comp.png"
 
 
 const lol = async() => {
@@ -26,7 +26,6 @@ export default function Search(){
     const [forModal ,setForModal]=useState(items[0])
     const [name,setName] = useState([])
     const [loader ,setLoader] = useState(true)
-    const [po ,setPo] =useState(false)
     const [address ,setAddress]=useState([])
     const [addrr,setAddrr] = useState()
     // Провайдер с подключением контракта..............................................
@@ -69,16 +68,6 @@ export default function Search(){
         clearTimeout(time)
       }
      },[name])
-   console.log(name)
-    //.................................................................................
-    // (async()=>{
-    //   let proper = []
-    //  for(let i = 0;i<comp.length;i++ ){
-    //   let por = await comp[i].name()
-    //   proper.push(por)
-    // } 
-    // setName(proper)
-    // })()
 
     function getName(e) {
       setFind(e.target.value);
