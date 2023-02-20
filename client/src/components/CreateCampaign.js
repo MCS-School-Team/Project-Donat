@@ -6,19 +6,23 @@ import {ethers, parseEther} from "ethers";
 import campaingFactory from "../data/campaingFactory";
 
 const CreateCampaign = () => {
-    const [mouseClick,setMouseClick] = useState(false)
     const [name ,setName] = useState ()
-    const [desc,setDesc] = useState ()
-    const [goal ,setGoal] = useState ()
-
-    function handleMouseClick(e){
-        e.preventDefault();
-        setMouseClick(!mouseClick);
-    }
+    const [description,setDesc] = useState ()
+    const [goal ,setGoal] = useState (0)
+    const [video ,setYoutube] = useState ()
+    const [site ,setWebsite] = useState ()
+    const [quest,setQuest] =useState(false)
 
     const handleOnChangeNameCampaign = (e) => {
         setName(e.target.value)
     }
+    const handleOnChangeYoutube = (e) => {
+        setYoutube(e.target.value)
+    }
+    const handleOnChangeWebsite = (e) => {
+        setWebsite(e.target.value)
+    }
+    
 
     const handleOnChangeDesc = (e) => {
         setDesc(e.target.value)
@@ -27,18 +31,16 @@ const CreateCampaign = () => {
     const handleOnChangeGoal = (e) => {
         setGoal(e.target.value)
     }
-
     const provider = new ethers.BrowserProvider(window.ethereum);
     const createCampaignTransaction = async (e) => {
         e.preventDefault()
         const signer = await provider.getSigner()
         const signedContract = campaingFactory.connect(signer)
         try {
-            await signedContract.createCampaing(name, desc, parseEther(goal))
+            await signedContract.createCampaing(name, description,parseEther(`${goal}`),video,site)
         } catch (err) {
             console.log(err);
         }
-
     }
 
     return (
@@ -90,30 +92,39 @@ const CreateCampaign = () => {
             {/*        </div>*/}
             {/*    </form>*/}
             {/*</section>*/}
-            <section className="m-10 border-2 mt-5  border-gray-300 rounded-lg p-7">
-                <p className="pb-5 text-brown font-Chewy text-2xl font-black">About your campaign</p>
+            <section className="m-10 border-2 mt-5  border-gray-300 rounded-lg  p-7">
+                <p className="pb-5 text-black font-Chewy text-2xl ">About your campaign</p>
                 <form className="grid grid-cols-1 gap-y-5" onSubmit={createCampaignTransaction}>
                     <div className="">
                         <label className="mb-2 text-sm font-medium text-gray-900 dark:text-whith"
                                htmlFor="name-campaign">Name
                             campaign</label><br/>
                         <input
-                            className="phone-number bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            className="phone-number bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             name="name-campaign" type="text" onChange={handleOnChangeNameCampaign}/>
                     </div>
                     <div className="">
-                        <label className="mb-2 text-sm font-medium text-gray-900 dark:text-whith"
+                        <label className="mb-2 text-sm font-medium text-black dark:text-whith"
                                htmlFor="description">Description</label><br/>
                         <textarea
-                            className="description bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            className="description bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             name="description" onChange={handleOnChangeDesc}/>
                     </div>
                     <div className="">
+                    <label className="mb-2 text-sm font-medium text-gray-900 dark:text-whith"  htmlFor="vide">Youtube video ID {quest === false?<button onClick={()=>setQuest(!quest)} className="font-bold">?</button>:<div><button onClick={()=>setQuest(!quest)}><img src={idvideo} alt=""/></button></div>}</label><br/>
+                        <input
+                            className="phone-number bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            name="video" type="text" onChange={handleOnChangeYoutube }/>
+                            <label className="mb-2 text-sm font-medium text-gray-900 dark:text-whith"
+                               htmlFor="website">Link on your website</label><br/>
+                        <input
+                            className="phone-number bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            name="website" type="text"  onChange={handleOnChangeWebsite}/>
                         <label className="mb-2 text-sm font-medium text-gray-900 dark:text-whith"
                                htmlFor="goal">Goal</label><br/>
                         <input
-                            className="phone-number bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            name="goal" type="text" onChange={handleOnChangeGoal}/>
+                            className="phone-number bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            name="goal" step=".01" type="number" onChange={handleOnChangeGoal}/>
                     </div>
                     {/*<div className="">*/}
                     {/*    <label className="mb-2 text-sm font-medium text-gray-900 dark:text-whith"*/}
@@ -184,7 +195,7 @@ const CreateCampaign = () => {
                     {/*        name="website-link" type="url"/>*/}
                     {/*</div>*/}
                     <div className="m-10 grid justify-items-center">
-                        <button className="text-[17px] w-2/5 rounded-lg h-10 text-white bg-blue" type='submit'>Send</button>
+                        <button className="text-[17px] w-2/5 rounded-lg h-10 text-white bg-blue" type="submit">Send</button>
                     </div>
                 </form>
             </section>
