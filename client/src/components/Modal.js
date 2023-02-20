@@ -5,8 +5,10 @@ import { useState,useEffect } from 'react';
 import "../index.css"
 
 
-const Modal = ({active,setActive,items,address}) => {
+const Modal = ({active,setActive,address}) => {
     const [name ,setName] = useState ()
+    const [site ,setSite] = useState ()
+    const [video ,setVideo] = useState ()
     const [desc,setDesc] = useState ()
     const [values ,setValues] = useState ()
     const [goal ,setGoal] = useState ()
@@ -19,7 +21,9 @@ const Modal = ({active,setActive,items,address}) => {
   useEffect(() => {
     (async () => {
        setName( await contract.name())
+       setSite( await contract.site())
        setDesc(await contract.description())
+       setVideo(await contract.video())
        setGoal(formatEther(await contract.goal()))
        setNow(formatEther(await contract.treasure()))
         console.log(goal)
@@ -49,7 +53,7 @@ const Modal = ({active,setActive,items,address}) => {
                 <div>
                     <div className="flex  p-2 mb-5">
                         
-                        <div className="-ml-3 ">{items.video ? <iframe width="600px" height={350} src={`https://www.youtube.com/embed/${items.video}`} title={items.name}></iframe>  : items.image }</div>
+                        <div className="-ml-3 ">{video ? <iframe width="600px" className='rounded-xl' height={350} src={`https://www.youtube.com/embed/${video}`} title={name}></iframe>  : ""}</div>
                         <div className="flex flex-col w-full ml-3 rounded-xl items-center border border-solid border-red-600">
                            <h1 className="font-bold text-[25px] mb-7" >Progress</h1>
                            <div className="flex">
@@ -64,13 +68,13 @@ const Modal = ({active,setActive,items,address}) => {
                         </div>
                     </div>
                     <div>
-                        <div className='h-[150px] overflow-y-auto'>
+                        {/* <div className='h-[150px] overflow-y-auto'>
                             <h1 className="font-bold  text-[25px] ">Our Mission</h1>
                             <h2 className="text-left text-[19px] mb-10 ">{items.desc.Mission} </h2> 
-                       </div>
+                       </div> */}
                        <h1 className="font-bold text-[25px]">Why Donate to  {name}</h1>
                        <h2 className="text-left text-[19px] ">{desc}</h2>
-                       <h3 className="font-bold text-[18px] mt-3">Wibsite: <a className="font-thin" href={`${items.website}`} >{items.website}</a></h3>
+                       <h3 className="font-bold text-[18px] mt-3">Wibsite: <a className="font-thin" href={`${site}`} >{site}</a></h3>
                     </div>  
                 </div>
         </div>
