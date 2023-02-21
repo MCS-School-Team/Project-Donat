@@ -1,9 +1,9 @@
 import React from "react";
-import list from "../data/list";
 import { useState } from "react";
 import idvideo from "../images/idvideo.png";
-import {ethers, parseEther} from "ethers";
+import { parseEther, ethers} from "ethers";
 import campaingFactory from "../data/campaingFactory";
+import CreateImages from "./CreateImages";
 
 const CreateCampaign = () => {
     const [name ,setName] = useState ()
@@ -32,7 +32,7 @@ const CreateCampaign = () => {
         setGoal(e.target.value)
     }
     const provider = new ethers.BrowserProvider(window.ethereum);
-    const createCampaignTransaction = async (e) => {
+        const createCampaignTransaction = async (e) => {
         e.preventDefault()
         const signer = await provider.getSigner()
         const signedContract = campaingFactory.connect(signer)
@@ -194,9 +194,11 @@ const CreateCampaign = () => {
                     {/*        className="phone-number bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"*/}
                     {/*        name="website-link" type="url"/>*/}
                     {/*</div>*/}
+                    <CreateImages></CreateImages>
                     <div className="m-10 grid justify-items-center">
                         <button className="text-[17px] w-2/5 rounded-lg h-10 text-white bg-blue" type="submit">Send</button>
                     </div>
+                  
                 </form>
             </section>
 

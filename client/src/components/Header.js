@@ -5,6 +5,7 @@ import Button from "./Button";
 import { ethers } from "ethers";
 import metamask from "../images/metamask.svg";
 
+
 const Header = () => {
   const [currentAccount, setCurrentAccount] = useState();
 
@@ -42,8 +43,7 @@ const Header = () => {
         }
       }
     } else {
-      provider = new ethers.BrowserProvider(window.ethereum);
-      signer = await provider.getSigner();
+         signer = await provider.getSigner();
     }
   };
 
