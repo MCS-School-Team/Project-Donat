@@ -21,13 +21,25 @@ module.exports = {
     'light-blue': 'rgba(16, 54, 111, 1)',
     'blue':'rgba(13, 7, 81, 1)',
     'red': '#ff0000',
-    'yellow':'rgba(217, 119, 6)'
+    'yellow':'rgba(217, 119, 6)',
+    'slate-900':"rgb(15 23 42)",
+    'slate-400': "rgb(148 163 184)",
+    'slate-500': "rgb(100 116 139)",
+     'slate-600': "rgb(71 85 105)",   
+     'slate-700': "rgb(51 65 85)" ,  
+     'slate-800': "rgb(30 41 59)",
+      'cayn': "rgb(8 145 178)"
     
     },
     fontFamily:{
      Chewy:['Chewy', 'cursive']
     },
     extend: {
+      backgroundImage: {
+        'mount':"url('./images/mount.png')",
+        'mounti2':"url('./images/mounti4.jpg')"
+       
+      },
       width: {
         "960" : "1100px",
       },

@@ -1,14 +1,13 @@
 import React from "react";
 import { useState,useEffect } from "react";
 import Modal from "./Modal"
-import list from "../data/list"
-import list2 from "../data/list2"
 import { compony } from "../data/ArrayCompony";
-import { ethers,Contract,parseEther,formatEther } from "ethers";
+import { ethers,Contract} from "ethers";
 import abi from "../abi.json"
 import campaingFactory from "../data/campaingFactory";
 import filterName from "./serachFunc";
 import photoCamp from "../images/mount.png"
+
 
 
 const lol = async() => {

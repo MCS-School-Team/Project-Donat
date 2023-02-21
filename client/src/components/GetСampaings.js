@@ -1,18 +1,19 @@
 import { useState, useEffect } from "react";
 import campaingFactory from "../data/campaingFactory";
-import { Contract, ethers } from "ethers";
+import { Contract, ethers} from "ethers";
 import abi from "../abi.json";
+
 
 const GetCampaings = () => {
   const [name, setName] = useState([]);
   const [address, setAddress] = useState([]);
   const [loader, setLoader] = useState("true");
-  let provider = new ethers.BrowserProvider(window.ethereum);
-  useEffect(() => {
+   useEffect(() => {
     (async () => {
       setAddress(await campaingFactory.campaingsArray());
     })();
   }, []);
+  let provider = new ethers.BrowserProvider(window.ethereum);
   const comp = address.map((adr) => new Contract(`${adr}`, abi, provider));
   useEffect(() => {
     try {

@@ -1,6 +1,5 @@
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
-
 import { useState, useEffect } from "react";
 import campaingFactory from "../data/campaingFactory";
 import { Contract, ethers } from "ethers";
@@ -28,6 +27,7 @@ const Carousel = () => {
             goal:await comp[i].goal(),
             video:await comp[i].video(),
             site:await comp[i].site(),
+            time:await comp[i].time(),
           };
           proper.push(por);
         }
@@ -56,10 +56,7 @@ const Carousel = () => {
             <div className="border-2 border-brown rounded-xl p-10">
               <div className="font-Chewy text-2xl text-brown font-black text-center">
                 <div>{item.name}</div>
-                <div>{item.description}</div>
-                <div>{item.goal}</div>
-                <div>{item.video}</div>
-                <div>{item.site}</div>
+              
               </div>
             </div>
           </SplideSlide>
