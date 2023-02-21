@@ -44,7 +44,6 @@ const CreateCampaign = () => {
     }
 
     return (
-        <div className ="bg-light brown">
         <article className="container w-6/12 mx-auto">
             {/*<section className="about-you m-10 border-2 mt-5 border-gray-300 rounded-lg p-7">*/}
             {/*    <p className="pb-5 text-brown font-Chewy text-2xl font-black">About you</p>*/}
@@ -204,7 +203,6 @@ const CreateCampaign = () => {
             </section>
 
         </article>
-        </div>
     );
 };
 
