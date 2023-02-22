@@ -4,6 +4,8 @@ import idvideo from "../images/idvideo.png";
 import { parseEther, ethers } from "ethers";
 import campaingFactory from "../data/campaingFactory";
 import CreateImages from "./CreateImages";
+import list from "../data/list";
+import list2 from "../data/list2"
 
 const CreateCampaign = () => {
   const [name, setName] = useState();
@@ -12,6 +14,13 @@ const CreateCampaign = () => {
   const [video, setYoutube] = useState();
   const [site, setWebsite] = useState();
   const [quest, setQuest] = useState(false);
+  const[image, setImage] = useState('')
+  const[timeStart, setTimeStart]=useState(new Date())
+  const[timeStartInSec, setTimeStartInSec]=useState()
+  const[timeEnd, setTimeEnd] = useState(new Date())
+  const[timeEndInSec, setTimeEndInSec] = useState()
+  const[country, setCountry]=useState()
+  const[category, setCategory]=useState()
 
   const handleOnChangeNameCampaign = (e) => {
     setName(e.target.value);
@@ -30,6 +39,20 @@ const CreateCampaign = () => {
   const handleOnChangeGoal = (e) => {
     setGoal(e.target.value);
   };
+  const handleOnChangeTimeStart = (e) => {
+    setTimeStart(e.target.value);
+   setTimeStartInSec(Math.floor(timeStart.getTime() / 1000))
+  };
+  const handleOnChangeTimeEnd = (e) => {
+    setTimeEnd(e.target.value);
+    setTimeEndInSec(Math.floor(timeEnd.getTime() / 1000))
+  };
+  const handleOnChangeCountry = (e) => {
+    setCountry(e.target.value);
+  };
+  const handleOnChangeCategory = (e) => {
+    setCategory(e.target.value);
+  };
   const provider = new ethers.BrowserProvider(window.ethereum);
   const createCampaignTransaction = async (e) => {
     e.preventDefault();
@@ -41,13 +64,19 @@ const CreateCampaign = () => {
         description,
         parseEther(`${goal}`),
         video,
-        site
+        site,
+        image,
+        timeStartInSec,
+        timeEndInSec,
+        country,
+        category
+
       );
     } catch (err) {
       console.log(err);
     }
   };
-
+console.log('timeStartInSec:',timeStartInSec, 'timeEndInSec:', timeEndInSec)
   return (
     <div className = "bg-light-brown pb-8">
     <article className=" w-6/12 mx-auto bg-white drop-shadow-xl">
@@ -168,7 +197,7 @@ const CreateCampaign = () => {
             </label>
             <br />
             <input
-              className="phone-number bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className=" mb-2 phone-number bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
               name="website"
               type="text"
               onChange={handleOnChangeWebsite}
@@ -181,82 +210,62 @@ const CreateCampaign = () => {
             </label>
             <br />
             <input
-              className="phone-number bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="mb-2 phone-number bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
               name="goal"
               step=".01"
               type="number"
               onChange={handleOnChangeGoal}
             />
+              <label
+              className="mb-2 text-sm font-medium text-gray-900 dark:text-whith"
+              htmlFor="goal"
+            >
+              Time
+            </label>
+            <br />
+            <div className =" mb-2  flex flex-row" >
+            <input
+              className=" mr-1 phone-number bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              name="timeStart"
+              onChange={handleOnChangeTimeStart}
+              type="date"
+             />
+              <input
+              className="ml-1 phone-number bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              name="timeEnd"
+              onChange={handleOnChangeTimeEnd}
+              type="date"
+             />
+            </div>
+           
+            <label className="mb-2 text-sm font-medium text-gray-900 dark:text-whith"
+            htmlFor="name-campaign">Country campaign</label><br/>
+            <select
+            className=" mb-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            name="country"
+            onChange={handleOnChangeCountry}>
+            <option value="All">Country</option>
+        {list.map(item => item)}
+            </select>
+           
+           
+            <label className="mb-2 text-sm font-medium text-gray-900 dark:text-whith" htmlFor="category-campaign">Category campaign</label><br/>
+            <select
+           className=" mb-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+             name="category"
+             onChange={handleOnChangeCategory}>
+           <option value="All">Choose category</option>
+           {list2.map(item => item)}
+          </select>
+         
+        
+         
 
-            {/*<div className="">*/}
-            {/*    <label className="mb-2 text-sm font-medium text-gray-900 dark:text-whith"*/}
-            {/*           htmlFor="name-campaign">Country*/}
-            {/*        campaign</label><br/>*/}
-            {/*    <select*/}
-            {/*        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"*/}
-            {/*        name="country-campaign">*/}
-            {/*        <option value="All">Country</option>*/}
-            {/*        {list.map(item => item)}*/}
-            {/*    </select>*/}
-            {/*</div>*/}
-            {/*<div className="">*/}
-            {/*    <label className="mb-2 text-sm font-medium text-gray-900 dark:text-whith" htmlFor="category-campaign">Category*/}
-            {/*        campaign</label><br/>*/}
-            {/*    <select*/}
-            {/*        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"*/}
-            {/*        name="category-campaign">*/}
-            {/*        <option value="All">Filter by category</option>*/}
-            {/*        <option value="addiction-recovery">Addiction Recovery</option>*/}
-            {/*        <option value="animals">Animals</option>*/}
-            {/*        <option value="arts-culture">Arts &amp; Culture</option>*/}
-            {/*        <option value="children-youth">Children &amp; Youth</option>*/}
-            {/*        <option value="community-foundations">Community Foundations</option>*/}
-            {/*        <option value="community-service">Community Service</option>*/}
-            {/*        <option value="developmental-disabilities">Developmental Disabilities</option>*/}
-            {/*        <option value="disaster-response">Disaster Response</option>*/}
-            {/*        <option value="education-training">Education &amp; Training</option>*/}
-            {/*        <option value="environment">Environment</option>*/}
-            {/*        <option value="first-responders-veterans">First Responders &amp; Veterans</option>*/}
-            {/*        <option value="health-medicine">Health &amp; Medicine</option>*/}
-            {/*        <option value="higher-education">Higher Education</option>*/}
-            {/*        <option value="homelessness">Homelessness</option>*/}
-            {/*        <option value="human-rights">Human Rights</option>*/}
-            {/*        <option value="hunger">Hunger</option>*/}
-            {/*        <option value="immigration-refugees">Immigration &amp; Refugees</option>*/}
-            {/*        <option value="international-development">International Development</option>*/}
-            {/*        <option value="legal-support">Legal Support</option>*/}
-            {/*        <option value="lgbtq">LGBTQ</option>*/}
-            {/*        <option value="racial-justice">Racial Justice</option>*/}
-            {/*        <option value="religion-and-faith-based">Religion and Faith Based</option>*/}
-            {/*        <option value="technology">Technology</option>*/}
-            {/*        <option value="water-hygiene">Water &amp; Hygiene</option>*/}
-            {/*        <option value="women-girls">Women &amp; Girls</option>*/}
-            {/*    </select>*/}
-            {/*</div>*/}
-            {/*<div>*/}
-            {/*    <label className="mb-2 text-sm font-medium text-gray-900 dark:text-whith"*/}
-            {/*           htmlFor="logo-link">Logo link</label><br/>*/}
-            {/*    <input*/}
-            {/*        className="phone-number bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"*/}
-            {/*        name="logo-link" type="url"/>*/}
-            {/*</div>*/}
-            {/*<div>*/}
-            {/*    <label className="mb-2 text-sm font-medium text-gray-900 dark:text-whith"*/}
-            {/*           htmlFor="youtube-link">Youtube</label>*/}
-            {/*           <label className="ml-2" htmlFor="youtube-link">{mouseClick ? <div className=""><button className="bg-red  p-1 rounded-sm" onClick={handleMouseClick}>close</button><img width="250px" src={idvideo} alt="" /></div>: <button  onClick={handleMouseClick}>?</button>}</label>*/}
-            {/*           <br/>*/}
-            {/*    <input*/}
-            {/*        className="phone-number bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"*/}
-            {/*        name="youtube-link" type="url"/>*/}
-            {/*</div>*/}
-            {/*<div>*/}
-            {/*    <label className="mb-2 text-sm font-medium text-gray-900 dark:text-whith"*/}
-            {/*           htmlFor="youtube-link">Website</label><br/>*/}
-            {/*    <input*/}
-            {/*        className="phone-number bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"*/}
-            {/*        name="website-link" type="url"/>*/}
-            {/*</div>*/}
-            <CreateImages ></CreateImages>
+            <CreateImages setImgHash = {setImage}></CreateImages>
+            <div>
+      <label className=" text-sm font-medium text-gray-900 dark:text-whith">Image Hash</label>
+      <input  className="phone-number bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name = "image" value={image} disabled="disabled"/>
+      </div>
           </div>
           <div className=" grid justify-items-center">
             <button
