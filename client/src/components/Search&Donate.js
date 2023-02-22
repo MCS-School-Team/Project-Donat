@@ -60,11 +60,13 @@ export default function Search(){
         
      },[address])
      useEffect(()=>{
+       if(name.length !== 0){
       let time = setTimeout(()=>{
         setLoader(false)
       },2000)
       return()=>{
         clearTimeout(time)
+      }
       }
      },[name])
 
