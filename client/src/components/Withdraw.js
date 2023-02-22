@@ -21,6 +21,17 @@ const provider = new ethers.BrowserProvider(window.ethereum);
     }
    })()
   }
+  function moneyBack(){
+    (async()=>{
+        const  signer = await provider.getSigner()
+        const signedContract = new Contract(address, abi, signer)
+        try {
+            await signedContract.money_back()
+        } catch (err) {
+            console.log(err);
+        }
+    })()
+  }
         if(user === owner.toLowerCase() ){
            return(
             <div className="flex flex-col h-full items-center justify-around"> 
@@ -33,7 +44,7 @@ const provider = new ethers.BrowserProvider(window.ethereum);
               <div className="flex flex-col h-full items-center justify-around">
                     <h1 className="font-bold text-[20px]">You are not an owner</h1> 
                     <h2 className="font-bold text-[20px]">Your contribution {contrib}ETH</h2> 
-                    <button className="border rounded-xl bg-blue text-white p-2" onClick={withdrawOwnerMoney}>withdraw</button> 
+                    <button className="border rounded-xl bg-blue text-white p-2" onClick={ moneyBack}>withdraw</button> 
                 </div>  
             )
              
