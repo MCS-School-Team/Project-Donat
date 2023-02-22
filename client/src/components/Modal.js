@@ -18,6 +18,7 @@ const Modal = ({active,setActive,address}) => {
     const [user ,setUser] = useState ()
     const [donate ,setDonate] = useState(false)
     const [contrib ,setContrib] = useState(false)
+    const [loader ,setLoader] = useState(false)
     //Провайдер с подключением контракта..................
     const provider = new ethers.BrowserProvider(window.ethereum);
     const  contract = new Contract(`${address}`, abi, provider)
@@ -25,7 +26,9 @@ const Modal = ({active,setActive,address}) => {
     //...................................................
   // Для того чтобы задать переменные взятые из контракта 
   useEffect(() => {
+   
     (async () => {
+       setLoader(true)
        const  signer = await provider.getSigner()
        const signedContract = new Contract(address, abi, signer)
        setName( await contract.name())
@@ -42,6 +45,8 @@ const Modal = ({active,setActive,address}) => {
       .then((res) => {
         setUser(res.toString());
       })
+      setLoader(false)
+
     })()
   },[active])
   //.....................................................
@@ -70,7 +75,13 @@ const Modal = ({active,setActive,address}) => {
   console.log(user,"and",owner)
    return (
     <div className={active ? "modal active":"modal"}  onClick={handleExit} >
-        <div className="p-5 rounded-xl bg-white w-[1000px]" onClick={e => e.stopPropagation()}>  
+      {loader === true?(
+        <div className="flex justify-center items-center h-[700px]">
+        <div className=" p-10 rounded-full animate-spin w-10 border border-red border-dashed"></div>
+        </div>
+      ):( 
+        <div className="p-5 rounded-xl bg-white w-[1000px]" onClick={e => e.stopPropagation()}> 
+        
                 <div>
                     <div className="flex  p-2 mb-5">
                         
@@ -107,6 +118,7 @@ const Modal = ({active,setActive,address}) => {
                 </div>
       
         </div>
+      )}
     </div>
     )
 }
