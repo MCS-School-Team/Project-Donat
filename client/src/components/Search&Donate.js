@@ -5,6 +5,7 @@ import { ethers, Contract } from "ethers";
 import abi from "../abi.json";
 import campaingFactory from "../data/campaingFactory";
 import photoCamp from "../images/mount.png";
+import filterName from "./serachFunc";
 
 function Search() {
   const [word, setWord] = useState();
@@ -48,9 +49,7 @@ function Search() {
       })();
     } catch (err) {
       console.error(err);
-    } finally {
-      setLoader(false);
-    }
+    } 
   }, [address]);
   console.log(items);
 
@@ -58,7 +57,7 @@ function Search() {
     if (items.length !== 0) {
       let time = setTimeout(() => {
         setLoader(false);
-      }, 2000);
+      },500);
       return () => {
         clearTimeout(time);
       };
@@ -70,20 +69,20 @@ function Search() {
     setWord(word);
   };
 
-  const handlesearchName = () => {
-       if (word) {
-      setSearchName([]);
-      const liter = word[0].toUpperCase() + word[0].slice(1);
-      for (let i = 0; i < items.length; i++) {
-        if (items[i].name.includes(liter)) {
-          searchName.push(items[i]);
-          console.log('searchName:',searchName);
-          console.log('word:', word)
+  // const handlesearchName = () => {
+  //      if (word) {
+  //     setSearchName([]);
+  //     const liter = word[0].toUpperCase() + word[0].slice(1);
+  //     for (let i = 0; i < items.length; i++) {
+  //       if (items[i].name.includes(liter)) {
+  //         searchName.push(items[i]);
+  //         console.log('searchName:',searchName);
+  //         console.log('word:', word)
          
-        }
-      }
-    }
-  };
+  //       }
+  //     }
+  //   }
+  // };
 
 
 
@@ -94,11 +93,11 @@ function Search() {
     setCountry(e.target.value);
   }
 
-  // useEffect(() => {
-  //   const filteredName = filterName(findName, findCategory, findCountry, compony);
-  //   setItems(filteredName);
-  // }, [fin]);
-
+  useEffect(() => {
+    const filteredName = filterName(word, findCategory, findCountry, items);
+    setSearchName(filteredName);
+  }, [fin]);
+ console.log(searchName);
   function handleSubmit(e) {
     setFin(!fin);
     e.preventDefault();
@@ -117,83 +116,7 @@ function Search() {
         </>
         )
      
-    }else if((loader === false) && (!word)){
-      return (
-       <>
-        {/* Тут в Modal мы передаёи пропсы ,соответственно address={addrr} это передача адреса */}
-        <Modal active={modalActive} setActive={setModalActive} items={forModal} address={addrr} />
-
-        <div className="flex  bg-cover bg-gradient-to-b from-light-brown z-20 to-light-brown-2 font-Chewy flex-col ">
-          <div className="bg-mounti2 bg-cover ">
-            <div className="flex  justify-center  p-16">
-              <form className=" w-3/5 opacity-90" onSubmit={handleSubmit}>
-                <input
-                  type="search"
-                  className="w-10/12 h-[46px] text-[20px] border border-solid border-gray-300 rounded-l-lg  indent-2  "
-                  placeholder="Search by name..."
-                  onChange={changeSearch}
-                />
-
-                <button
-                  type="submit"
-                  className="bg-blue h-[48px] -ml-1 text-[20px] text-white border rounded-r-lg  w-2/12"
-                  onClick={handlesearchName}
-                >
-                  Search
-                </button>
-                
-                <div className="w-full flex justify-center">
-                  <select
-                    className="w-1/3 p-1 rounded-lg mr-2  border border-solid indent-2 border-gray-300 bg-white  mt-2 text-[20px]"
-                    onChange={getCategory}
-                  >
-                    <option value="All">Filter by category</option>
-                    {/* {list2.map(list => <option key={list} >{list}</option>)} */}
-                  </select>
-                  <select
-                    className="w-1/3 border border-solid  bg-white-r rounded-lg indent-2 border-gray-300 mt-2 text-[20px]"
-                    onChange={getCountry}
-                  >
-                    <option value="All">Country</option>
-                    {/* {list.map(item => <option key={item} >{item}</option> )} */}
-                  </select>
-                </div>
-              </form>
-            </div>
-
-           
-              <div className=" flex  justify-center">
-                <ul className=" flex   w-[1250px]  ">
-                  <div className="  flex   w-full flex-wrap ">
-                    {items.map((item, index) => (
-                      <li key={index}>
-                        <div className="flex opacity-90 bg-white-r items-center text-[25px] rounded-lg  p-9 ml-7 mt-3 mb-4 flex-col drop-shadow-xl">
-                          <img
-                            src={photoCamp}
-                            alt=""
-                            className="h-[200px] w-[200px]"
-                          />
-                          {item.name}
-                          <button
-                            onClick={() => modal(index)}
-                            className="text-[17px] w-10/12 rounded-lg h-10 mt-4 text-white bg-blue"
-                          >
-                            Learn more
-                          </button>
-                        </div>
-                      </li>
-                    ))}
-                  </div>
-                </ul>
-              </div>
-            
-          </div>
-        </div>
-      
-    </>
-  );
-}
-else if(loader === false){
+    } else if(loader === false){
   return (
   <>
    {/* Тут в Modal мы передаёи пропсы ,соответственно address={addrr} это передача адреса */}
@@ -213,7 +136,7 @@ else if(loader === false){
            <button
              type="submit"
              className="bg-blue h-[48px] -ml-1 text-[20px] text-white border rounded-r-lg  w-2/12"
-             onClick={handlesearchName}
+             onClick={()=>setFin(!fin)}
            >
              Search
            </button>
@@ -241,7 +164,8 @@ else if(loader === false){
          <div className=" flex  justify-center">
            <ul className=" flex   w-[1250px]  ">
              <div className="  flex   w-full flex-wrap ">
-               {items.map((item, index) => (
+              {searchName.length !== 0?(
+                searchName.map((item, index) => (
                  <li key={index}>
                    <div className="flex opacity-90 bg-white-r items-center text-[25px] rounded-lg  p-9 ml-7 mt-3 mb-4 flex-col drop-shadow-xl">
                      <img
@@ -249,7 +173,7 @@ else if(loader === false){
                        alt=""
                        className="h-[200px] w-[200px]"
                      />
-                     {searchName.name}
+                     {item.name}
                      <button
                        onClick={() => modal(index)}
                        className="text-[17px] w-10/12 rounded-lg h-10 mt-4 text-white bg-blue"
@@ -258,7 +182,26 @@ else if(loader === false){
                      </button>
                    </div>
                  </li>
-               ))}
+               ))
+              ):(items.map((item, index) => (
+                <li key={index}>
+                  <div className="flex opacity-90 bg-white-r items-center text-[25px] rounded-lg  p-9 ml-7 mt-3 mb-4 flex-col drop-shadow-xl">
+                    <img
+                      src={photoCamp}
+                      alt=""
+                      className="h-[200px] w-[200px]"
+                    />
+                    {item.name}
+                    <button
+                      onClick={() => modal(index)}
+                      className="text-[17px] w-10/12 rounded-lg h-10 mt-4 text-white bg-blue"
+                    >
+                      Learn more
+                    </button>
+                  </div>
+                </li>
+              )))}
+               
              </div>
            </ul>
          </div>
