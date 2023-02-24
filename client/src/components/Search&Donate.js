@@ -120,8 +120,8 @@ console.log('diffEndCampainginDay:',diffEndCampainginDay)
           address={addrr}
         />
 
-        <div className="flex z-20 bg-cover  bg-gradient-to-b from-light-brown  to-light-brown-2  font-Chewy flex-col ">
-          <div className="bg-mounti2 h-screen bg-cover">
+        <div className="flex  bg-gradient-to-b from-light-brown  to-light-brown-2  font-Chewy flex-col ">
+          <div className="bg-mounti2  bg-cover">
             <div className="flex  justify-center  p-16">
               <form className=" w-3/5 opacity-90" onSubmit={handleSubmit}>
                 <input
