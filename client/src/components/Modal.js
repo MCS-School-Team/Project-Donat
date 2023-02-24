@@ -53,7 +53,6 @@ const Modal = ({ active, setActive, address }) => {
   console.log("diffEndCampainginDay:", diffEndCampainginDay);
 
   //....................................................
-
   function handleExit() {
     setActive(false);
     setDonate(false);
@@ -162,6 +161,7 @@ const Modal = ({ active, setActive, address }) => {
                         goal={goal}
                         now={now}
                         address={address}
+                        time={diffEndCampainginDay}
                       />
                     )}
                   </div>
