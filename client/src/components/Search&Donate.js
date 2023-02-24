@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import Modal from "./Modal";
-import { ethers, Contract } from "ethers";
+import { ethers, Contract,InfuraProvider } from "ethers";
 import abi from "../abi.json";
 import campaingFactory from "../data/campaingFactory";
 import photoCamp from "../images/mount.png";
@@ -22,10 +22,9 @@ function Search() {
   const [address, setAddress] = useState([]);
   const [addrr, setAddrr] = useState();
   const[date, setDate] = useState(new Date())
-  console.log(date)
   
   // Провайдер с подключением контракта..............................................
-  const provider = new ethers.BrowserProvider(window.ethereum);
+  const provider = new InfuraProvider("goerli");
   //..................................................................................
   // let address = ["0x59f496E5580B7dF7de7BFAAF629eBf88B9CD0a15","0x0cf20925394275b0B177813c88E1FB5E5DBA8922","0x894fc722Eac35af3d8e4D492C6f4b242ace6395D"] // Массив с адресами контрактов
   useEffect(() => {
@@ -73,8 +72,8 @@ function Search() {
     }
   }, [items]);
 
-  const diffDate = items.map(item=>(item.timeEndInSec-date))
-  console.log(diffDate)
+  // const diffDate = items.map(item=>(item.timeEndInSec-date))
+  // console.log(diffDate)
   const changeSearch = (e) => {
     setWord()
     const word = e.target.value;
@@ -134,8 +133,8 @@ function Search() {
    {/* Тут в Modal мы передаёи пропсы ,соответственно address={addrr} это передача адреса */}
    <Modal active={modalActive} setActive={setModalActive} items={forModal} address={addrr} />
 
-   <div className="flex  bg-cover bg-gradient-to-b from-light-brown z-20 to-light-brown-2 font-Chewy flex-col ">
-     <div className="bg-mounti2 bg-cover ">
+   <div className="flex z-20 bg-cover  bg-gradient-to-b from-light-brown  to-light-brown-2  font-Chewy flex-col ">
+     <div className="bg-mounti2 h-screen bg-cover">
        <div className="flex  justify-center  p-16">
          <form className=" w-3/5 opacity-90" onSubmit={handleSubmit}>
            <input

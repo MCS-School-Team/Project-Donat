@@ -1,4 +1,4 @@
-import {Contract,formatEther,parseEther,ethers} from 'ethers';
+import {Contract,formatEther,parseEther,ethers,InfuraProvider} from 'ethers';
 import abi from "../abi.json"
 import React from "react";
 import { useState,useEffect } from 'react';
@@ -17,10 +17,9 @@ const Modal = ({active,setActive,address}) => {
     const [owner ,setOwner] = useState ()
     const [user ,setUser] = useState ()
     const [donate ,setDonate] = useState(false)
-    const [contrib ,setContrib] = useState(false)
     const [loader ,setLoader] = useState(false)
     //Провайдер с подключением контракта..................
-    const provider = new ethers.BrowserProvider(window.ethereum);
+    const provider = new InfuraProvider("goerli");
     const  contract = new Contract(`${address}`, abi, provider)
     
     //...................................................
@@ -29,8 +28,6 @@ const Modal = ({active,setActive,address}) => {
    
     (async () => {
        setLoader(true)
-       const  signer = await provider.getSigner()
-       const signedContract = new Contract(address, abi, signer)
        setName( await contract.name())
        setSite( await contract.site())
        setDesc(await contract.description())
@@ -38,16 +35,8 @@ const Modal = ({active,setActive,address}) => {
        setGoal(formatEther(await contract.goal()))
        setNow(formatEther(await contract.treasure()))
        setOwner(await contract.owner())
-       setContrib(formatEther(await signedContract.check_donate()))
-       await window.ethereum.request({
-        method: "eth_requestAccounts",
-      })
-      .then((res) => {
-        setUser(res.toString());
-      })
-      setLoader(false)
-
-    })()
+        setLoader(false)
+    })()  
   },[active])
   //.....................................................
   function handleExit(){
@@ -56,7 +45,17 @@ const Modal = ({active,setActive,address}) => {
   }
 
   const  handleDonate= () =>{
-    setDonate(true) 
+   (async()=>{
+     await window.ethereum.request({
+        method: "eth_requestAccounts",
+      })
+      .then((res) => {
+        setUser(res.toString());
+      })
+      
+    })()
+  
+   setDonate(true) 
   }
   function getValues(e){
     setValues(e.target.value)
@@ -64,7 +63,8 @@ const Modal = ({active,setActive,address}) => {
   //Название само за себя говорит ,отправка транзакции
   const transaction = async(e) =>{
     e.preventDefault()
-       const  signer = await provider.getSigner()
+      const providerses = new ethers.BrowserProvider(window.ethereum);
+       const  signer = await providerses.getSigner()
        const signedContract = new Contract(address, abi, signer)
     try {
         await signedContract.donate({ value: parseEther(values) })
@@ -99,7 +99,7 @@ const Modal = ({active,setActive,address}) => {
                            <div className='border flex justify-center items-center border-solid border-black w-11/12 h-1/3 rounded-2xl  '>
                              
                               <div className='flex h-full flex-col justify-around items-center'>
-                                {donate === false? <button className='border rounded-xl bg-blue text-white p-2' onClick={handleDonate}>Check your status</button>:<Withdraw owner={owner} user={user} goal={goal}  now={now}  contrib={contrib} address={address} />}
+                                {donate === false? <button className='border rounded-xl bg-blue text-white p-2' onClick={handleDonate}>Check your status</button>:<Withdraw owner={owner} user={user} goal={goal}  now={now}  address={address} />}
                                 
                               </div>
                              
