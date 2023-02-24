@@ -6,6 +6,8 @@ import abi from "../abi.json";
 import campaingFactory from "../data/campaingFactory";
 import photoCamp from "../images/mount.png";
 import filterName from "./serachFunc";
+import list2 from "../data/list2"
+import list from "../data/list"
 
 function Search() {
   const [word, setWord] = useState();
@@ -19,6 +21,9 @@ function Search() {
   const [loader, setLoader] = useState(true);
   const [address, setAddress] = useState([]);
   const [addrr, setAddrr] = useState();
+  const[date, setDate] = useState(new Date())
+  console.log(date)
+  
   // Провайдер с подключением контракта..............................................
   const provider = new ethers.BrowserProvider(window.ethereum);
   //..................................................................................
@@ -41,7 +46,11 @@ function Search() {
             goal: await comp[i].goal(),
             video: await comp[i].video(),
             site: await comp[i].site(),
-            time: await comp[i].time(),
+            image: await comp[i].image(),
+            timeStartInSec:await comp[i].timeStartInSec(),
+            timeEndInSec:await comp[i].timeEndInSec(),
+            country:await comp[i].country,
+            category:await comp[i].category,        
           };
           proper.push(por);
         }
@@ -63,6 +72,9 @@ function Search() {
       };
     }
   }, [items]);
+
+  const diffDate = items.map(item=>(item.timeEndInSec-date))
+  console.log(diffDate)
   const changeSearch = (e) => {
     setWord()
     const word = e.target.value;
@@ -86,10 +98,10 @@ function Search() {
 
 
 
-  function getCategory(e) {
+  function handleGetCategory(e) {
     setCategory(e.target.value);
   }
-  function getCountry(e) {
+  function handleGetCountry(e) {
     setCountry(e.target.value);
   }
 
@@ -143,18 +155,18 @@ function Search() {
            
            <div className="w-full flex justify-center">
              <select
-               className="w-1/3 p-1 rounded-lg mr-2  border border-solid indent-2 border-gray-300 bg-white  mt-2 text-[20px]"
-               onChange={getCategory}
+               className="w-1/2 p-1 rounded-lg mr-2  border border-solid indent-2 border-gray-300 bg-white  mt-2 text-[20px]"
+               onChange={handleGetCategory}
              >
                <option value="All">Filter by category</option>
-               {/* {list2.map(list => <option key={list} >{list}</option>)} */}
+              {list2.map(list=>list)} 
              </select>
              <select
                className="w-1/3 border border-solid  bg-white-r rounded-lg indent-2 border-gray-300 mt-2 text-[20px]"
-               onChange={getCountry}
+               onChange={handleGetCountry}
              >
                <option value="All">Country</option>
-               {/* {list.map(item => <option key={item} >{item}</option> )} */}
+             {list.map((cont) =>cont )}
              </select>
            </div>
          </form>
