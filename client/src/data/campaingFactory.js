@@ -1,7 +1,7 @@
-import { Contract, ethers,InfuraProvider} from "ethers";
+import { Contract, ethers} from "ethers";
 
-const provider = new InfuraProvider("goerli");
-const address = "0xce83fE393E1c55252A4D930D3BD3B005E6bB1C3c";
+const provider = new ethers.BrowserProvider(window.ethereum);
+const address = "0x05577260812e31a991d036363a69b265bC156655";
 const abi =[
 	{
 		"inputs": [

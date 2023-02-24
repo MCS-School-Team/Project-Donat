@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import idvideo from "../images/idvideo.png";
 import { parseEther, ethers } from "ethers";
 import campaingFactory from "../data/campaingFactory";
@@ -16,11 +16,29 @@ const CreateCampaign = () => {
   const [quest, setQuest] = useState(false);
   const[image, setImage] = useState('')
   const[timeStart, setTimeStart]=useState(new Date())
-  const[timeStartInSec, setTimeStartInSec]=useState()
+  const[timeStartInSec, setTimeStartInSec]=useState('')
   const[timeEnd, setTimeEnd] = useState(new Date())
-  const[timeEndInSec, setTimeEndInSec] = useState()
+  const[timeEndInSec, setTimeEndInSec] = useState('')
   const[country, setCountry]=useState()
   const[category, setCategory]=useState()
+  const [date, setDate] = useState(new Date().getTime() / 1000);
+
+
+  useEffect(()=>{
+    const dateTimeStart = new Date(timeStart).getTime()/1000
+    setTimeStartInSec(dateTimeStart)
+  },[timeStart])
+  
+  useEffect(()=>{
+    const dateTimeEnd = new Date(timeEnd).getTime()/1000
+    setTimeEndInSec(dateTimeEnd)
+  },[timeEnd])
+  const timeEndInSecNumber = Number.parseInt(timeEndInSec, 10);
+  const diffEndCampainginDay = Math.floor((timeEndInSecNumber - date) / 86400);
+  console.log("diffEndCampainginDay:", diffEndCampainginDay);
+  
+  console.log('timeStart:',typeof timeStart, 'timeEnd:', typeof timeEnd)
+  console.log('timeStartInSec:',timeStartInSec, 'timeEndInSec:', timeEndInSec)
 
   const handleOnChangeNameCampaign = (e) => {
     setName(e.target.value);
@@ -40,13 +58,16 @@ const CreateCampaign = () => {
     setGoal(e.target.value);
   };
   const handleOnChangeTimeStart = (e) => {
+    setTimeStart()
     setTimeStart(e.target.value);
-   setTimeStartInSec(Math.floor(timeStart.getTime() / 1000))
-  };
+  }  
+
   const handleOnChangeTimeEnd = (e) => {
-    setTimeEnd(e.target.value);
-    setTimeEndInSec(Math.floor(timeEnd.getTime() / 1000))
+    setTimeEnd();
+    setTimeEnd(e.target.value);   
   };
+
+
   const handleOnChangeCountry = (e) => {
     setCountry(e.target.value);
   };
@@ -76,7 +97,7 @@ const CreateCampaign = () => {
       console.log(err);
     }
   };
-console.log('timeStartInSec:',timeStartInSec, 'timeEndInSec:', timeEndInSec)
+
   return (
     <div className = "bg-light-brown pb-8">
     <article className=" w-6/12 mx-auto bg-white drop-shadow-xl">
