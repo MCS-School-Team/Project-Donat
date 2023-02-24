@@ -21,7 +21,8 @@ const CreateCampaign = () => {
   const[timeEndInSec, setTimeEndInSec] = useState('')
   const[country, setCountry]=useState()
   const[category, setCategory]=useState()
-  const[date, setDate] = useState(new Date().getTime()/1000)
+  const [date, setDate] = useState(new Date().getTime() / 1000);
+
 
   useEffect(()=>{
     const dateTimeStart = new Date(timeStart).getTime()/1000
@@ -32,11 +33,13 @@ const CreateCampaign = () => {
     const dateTimeEnd = new Date(timeEnd).getTime()/1000
     setTimeEndInSec(dateTimeEnd)
   },[timeEnd])
-
+  const timeEndInSecNumber = Number.parseInt(timeEndInSec, 10);
+  const diffEndCampainginDay = Math.floor((timeEndInSecNumber - date) / 86400);
+  console.log("diffEndCampainginDay:", diffEndCampainginDay);
+  
   console.log('timeStart:',typeof timeStart, 'timeEnd:', typeof timeEnd)
   console.log('timeStartInSec:',timeStartInSec, 'timeEndInSec:', timeEndInSec)
-const diffEndCampainginDay = Math.floor((timeEndInSec-date)/86400)
-console.log('diffEndCampainginDay:',diffEndCampainginDay)
+
   const handleOnChangeNameCampaign = (e) => {
     setName(e.target.value);
   };

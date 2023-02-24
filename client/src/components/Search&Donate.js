@@ -21,6 +21,7 @@ function Search() {
   const [loader, setLoader] = useState(true);
   const [address, setAddress] = useState([]);
   const [addrr, setAddrr] = useState();
+  const[date, setDate] = useState(new Date().getTime()/1000)
 
   // Провайдер с подключением контракта..............................................
   const provider = new InfuraProvider("goerli");
@@ -70,6 +71,10 @@ function Search() {
       };
     }
   }, [items]);
+const timeEndInSecNumber = Number.parseInt(items.map(item=>item.timeEndInSec), 10)
+  const diffEndCampainginDay = Math.floor((timeEndInSecNumber-date)/86400)
+console.log('diffEndCampainginDay:',diffEndCampainginDay)
+
   const changeSearch = (e) => {
     setWord();
     const word = e.target.value;
