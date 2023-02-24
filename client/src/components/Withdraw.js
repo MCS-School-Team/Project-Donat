@@ -1,15 +1,22 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import {ethers,Contract} from "ethers"
+import {ethers,Contract,formatEther} from "ethers"
 import abi from "../abi.json"
 import campaingFactory from"../data/campaingFactory"
 
 
-export default function Withdraw({owner,user,goal,now,contrib,address}){
+export default function Withdraw({owner,user,goal,now,address}){
 const [donate,setDonate] = useState()
 const [secontact,setSecontract] = useState()
+const [contrib ,setContrib] = useState()
 const provider = new ethers.BrowserProvider(window.ethereum);
-
+useEffect(()=>{
+(async()=>{
+    const  signer = await provider.getSigner()
+     const signedContract = new Contract(address, abi, signer)
+     setContrib(formatEther(await signedContract.check_donate()))
+})()
+},[])
   function withdrawOwnerMoney(){
    (async()=>{
     const  signer = await provider.getSigner()
