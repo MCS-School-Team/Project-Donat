@@ -46,10 +46,42 @@
 				"internalType": "string",
 				"name": "_site",
 				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_image",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_timeStartInSec",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_timeEndInSec",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "_country",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_category",
+				"type": "string"
 			}
 		],
 		"stateMutability": "nonpayable",
 		"type": "constructor"
+	},
+	{
+		"inputs": [],
+		"name": "updateTimestamp",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
 	},
 	{
 		"inputs": [],
@@ -60,12 +92,38 @@
 	},
 	{
 		"inputs": [],
+		"name": "category",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
 		"name": "check_donate",
 		"outputs": [
 			{
 				"internalType": "uint256",
 				"name": "",
 				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "country",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
 			}
 		],
 		"stateMutability": "view",
@@ -86,12 +144,12 @@
 	},
 	{
 		"inputs": [],
-		"name": "getState",
+		"name": "goal",
 		"outputs": [
 			{
-				"internalType": "enum Campaing.State",
+				"internalType": "uint256",
 				"name": "",
-				"type": "uint8"
+				"type": "uint256"
 			}
 		],
 		"stateMutability": "view",
@@ -99,12 +157,12 @@
 	},
 	{
 		"inputs": [],
-		"name": "goal",
+		"name": "image",
 		"outputs": [
 			{
-				"internalType": "uint256",
+				"internalType": "string",
 				"name": "",
-				"type": "uint256"
+				"type": "string"
 			}
 		],
 		"stateMutability": "view",
@@ -151,7 +209,20 @@
 	},
 	{
 		"inputs": [],
-		"name": "time",
+		"name": "timeEndInSec",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "timeStartInSec",
 		"outputs": [
 			{
 				"internalType": "uint256",

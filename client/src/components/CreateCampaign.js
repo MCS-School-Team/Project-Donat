@@ -62,7 +62,7 @@ const CreateCampaign = () => {
       await signedContract.createCampaing(
         name,
         description,
-        parseEther(`${goal}`),
+        goal,
         video,
         site,
         image,
