@@ -14,6 +14,7 @@ const Carousel = () => {
     (async () => {
       setAddress(await campaingFactory.campaingsArray());
     })();
+    console.log(address)
   }, []);
   const comp = address.map((adr) => new Contract(`${adr}`, abi, provider));
   useEffect(() => {
@@ -23,11 +24,7 @@ const Carousel = () => {
         for (let i = 0; i < comp.length; i++) {
           let por = {
             name: await comp[i].name(),
-            description: await comp[i].description(),
-            goal:await comp[i].goal(),
-            video:await comp[i].video(),
-            site:await comp[i].site(),
-            time:await comp[i].time(),
+               
           };
           proper.push(por);
         }
