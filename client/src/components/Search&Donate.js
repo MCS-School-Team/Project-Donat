@@ -8,6 +8,7 @@ import photoCamp from "../images/mount.png";
 import filterName from "./serachFunc";
 import list2 from "../data/list2";
 import list from "../data/list";
+import arrayImages from "../data/arrayImages";
 
 function Search() {
   const [word, setWord] = useState();
@@ -165,11 +166,7 @@ console.log('diffEndCampainginDay:',diffEndCampainginDay)
                     ? searchName.map((item, index) => (
                         <li key={index}>
                           <div className="flex opacity-90 bg-white-r items-center text-[25px] rounded-lg  p-9 ml-7 mt-3 mb-4 flex-col drop-shadow-xl">
-                            <img
-                              src={photoCamp}
-                              alt=""
-                              className="h-[200px] w-[200px]"
-                            />
+                            {arrayImages[index]}
                             {item.name}
                             <button
                               onClick={() => modal(index)}
