@@ -8,6 +8,7 @@ import photoCamp from "../images/mount.png";
 import filterName from "./serachFunc";
 import list2 from "../data/list2";
 import list from "../data/list";
+import arrayImages from "../data/arrayImages";
 
 function Search() {
   const [word, setWord] = useState();
@@ -45,7 +46,7 @@ function Search() {
             goal: await comp[i].goal(),
             video: await comp[i].video(),
             site: await comp[i].site(),
-            image: await comp[i].image(),
+            image: arrayImages[i],
             timeStartInSec: await comp[i].timeStartInSec(),
             timeEndInSec: await comp[i].timeEndInSec(),
             country: await comp[i].country,
@@ -121,7 +122,7 @@ console.log('diffEndCampainginDay:',diffEndCampainginDay)
         />
 
         <div className="flex  bg-gradient-to-b from-light-brown  to-light-brown-2  font-Chewy flex-col ">
-          <div className="bg-mounti2  bg-cover">
+          <div className="bg-mounti2 min-h-screen bg-cover">
             <div className="flex  justify-center  p-16">
               <form className=" w-3/5 opacity-90" onSubmit={handleSubmit}>
                 <input
@@ -165,11 +166,7 @@ console.log('diffEndCampainginDay:',diffEndCampainginDay)
                     ? searchName.map((item, index) => (
                         <li key={index}>
                           <div className="flex opacity-90 bg-white-r items-center text-[25px] rounded-lg  p-9 ml-7 mt-3 mb-4 flex-col drop-shadow-xl">
-                            <img
-                              src={photoCamp}
-                              alt=""
-                              className="h-[200px] w-[200px]"
-                            />
+                            {item.image}
                             {item.name}
                             <button
                               onClick={() => modal(index)}
@@ -183,11 +180,7 @@ console.log('diffEndCampainginDay:',diffEndCampainginDay)
                     : items.map((item, index) => (
                         <li key={index}>
                           <div className="flex opacity-90 bg-white-r items-center text-[25px] rounded-lg  p-9 ml-7 mt-3 mb-4 flex-col drop-shadow-xl">
-                            <img
-                              src={photoCamp}
-                              alt=""
-                              className="h-[200px] w-[200px]"
-                            />
+                            {item.image}
                             {item.name}
                             <button
                               onClick={() => modal(index)}
