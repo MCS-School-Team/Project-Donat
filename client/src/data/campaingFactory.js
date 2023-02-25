@@ -1,4 +1,4 @@
-import { Contract, ethers,InfuraProvider} from "ethers";
+import { Contract, InfuraProvider} from "ethers";
 
 const provider = new InfuraProvider("goerli");
 const address = "0x05577260812e31a991d036363a69b265bC156655";

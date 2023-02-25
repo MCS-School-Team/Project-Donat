@@ -99,7 +99,7 @@ const CreateCampaign = () => {
   };
 
   return (
-    <div className = "bg-light-brown pb-8">
+    <div className = "bg-light-brown pb-8 bg-mounti2 h-100% bg-cover">
     <article className=" w-6/12 mx-auto bg-white drop-shadow-xl">
       {/*<section className="about-you m-10 border-2 mt-5 border-gray-300 rounded-lg p-7">*/}
       {/*    <p className="pb-5 text-brown font-Chewy text-2xl font-black">About you</p>*/}
