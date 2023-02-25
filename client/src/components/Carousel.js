@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import campaingFactory from "../data/campaingFactory";
 import { Contract, ethers } from "ethers";
 import abi from "../abi.json";
+import arrayImages from "../data/arrayImages";
 
 const Carousel = () => {
   const [name, setName] = useState([]);
@@ -24,7 +25,7 @@ const Carousel = () => {
         for (let i = 0; i < comp.length; i++) {
           let por = {
             name: await comp[i].name(),
-               
+             image:arrayImages[i]
           };
           proper.push(por);
         }
@@ -39,7 +40,7 @@ const Carousel = () => {
   console.log(name);
 
   return (
-    <div className="flex justify-center m-10 p-4">
+    <div className="flex justify-center m-30 p-4">
       <Splide
         options={{
           rewind: true,
@@ -48,12 +49,12 @@ const Carousel = () => {
           gap: "3rem",
         }}
       >
-        {name.map((item) => (
+        {name.map((item,index) => (
           <SplideSlide>
-            <div className="border-2 border-brown rounded-xl p-10">
+            <div className="rounded-xl p-10">
               <div className="font-Chewy text-2xl text-brown font-black text-center">
-                <div>{item.name}</div>
-              
+              <div >{item.image}</div>
+                <div key = {index}>{item.name}</div>             
               </div>
             </div>
           </SplideSlide>
