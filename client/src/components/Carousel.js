@@ -18,6 +18,7 @@ const Carousel = () => {
     console.log(address)
   }, []);
   const comp = address.map((adr) => new Contract(`${adr}`, abi, provider));
+  
   useEffect(() => {
     try {
       (async () => {

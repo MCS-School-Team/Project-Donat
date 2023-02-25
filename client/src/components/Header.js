@@ -49,7 +49,7 @@ const Header = () => {
 
   return (
     <>
-      <div className="bg-light-brown">
+      <div className="bg-light-brown sticky top-0 z-10 ">
         <div className="flex flex-row justify-between ">
           <img className="ml-20" src={logo} alt="Logo" />
 
