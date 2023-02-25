@@ -138,24 +138,7 @@ console.log('diffEndCampainginDay:',diffEndCampainginDay)
                   onClick={() => setFin(!fin)}
                 >
                   Search
-                </button>
-
-                <div className="w-full flex justify-center">
-                  <select
-                    className="w-1/2 p-1 rounded-lg mr-2  border border-solid indent-2 border-gray-300 bg-white  mt-2 text-[20px]"
-                    onChange={handleGetCategory}
-                  >
-                    <option value="All">Filter by category</option>
-                    {list2.map((list) => list)}
-                  </select>
-                  <select
-                    className="w-1/3 border border-solid  bg-white-r rounded-lg indent-2 border-gray-300 mt-2 text-[20px]"
-                    onChange={handleGetCountry}
-                  >
-                    <option value="All">Country</option>
-                    {list.map((cont) => cont)}
-                  </select>
-                </div>
+                </button>                
               </form>
             </div>
 
